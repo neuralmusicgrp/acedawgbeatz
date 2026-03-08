@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Verse Sessions | Acedawgbeatz</title>
+  <meta name="description" content="Hook-ready records built for artists, creators, and collaborative content. Jump on the beat, record your verse, and share your performance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #03040A;
+      --bg2:      #060811;
+      --cyan:     #00E5C8;
+      --cyan2:    #00BFAA;
+      --cyan-dim: rgba(0,229,200,0.10);
+      --cyan-glow:rgba(0,229,200,0.25);
+      --magenta:  #FF0077;
+      --mag-dim:  rgba(255,0,119,0.10);
+      --gold:     #F0C040;
+      --gold-dim: rgba(240,192,64,0.10);
+      --text:     #D8E8F0;
+      --text-soft:#7A9AAF;
+      --text-dim: #3A5060;
+      --border:   rgba(0,229,200,0.14);
+      --border-strong: rgba(0,229,200,0.32);
+      --shadow-cyan: 0 0 30px rgba(0,229,200,0.14), 0 0 60px rgba(0,229,200,0.05);
+      --nav-h: 66px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Rajdhani', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+      cursor: crosshair;
+    }
+
+    /* ── GRID BG ── */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,229,200,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,200,0.028) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: grid-drift 30s linear infinite;
+    }
+
+    @keyframes grid-drift { 100% { background-position: 60px 60px; } }
+
+    /* ── SCANLINES ── */
+    body::after {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; z-index: 1;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.055) 2px, rgba(0,0,0,0.055) 4px);
+    }
+
+    /* ── SCROLL PROGRESS ── */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--gold));
+      z-index: 9999;
+      box-shadow: 0 0 12px var(--cyan), 0 0 24px rgba(0,229,200,0.4);
+      transition: width 0.08s linear;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(1240px, calc(100% - 32px));
+      margin: 0 auto;
+      position: relative; z-index: 2;
+    }
+
+    .section { padding: 80px 0; }
+    .section.alt {
+      background: linear-gradient(180deg, rgba(0,229,200,0.022), transparent);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── TYPE ── */
+    h1, h2, h3 {
+      font-family: 'Orbitron', monospace;
+      letter-spacing: 0.02em;
+      line-height: 1.06;
+      text-transform: uppercase;
+    }
+
+    h1 { font-size: clamp(2.2rem, 5vw, 4.4rem); font-weight: 900; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 800; }
+    h3 { font-size: 0.95rem; font-weight: 700; letter-spacing: 0.06em; }
+
+    p { color: var(--text-soft); font-size: 1.05rem; font-weight: 500; margin: 0 0 14px; }
+    .lead { font-size: 1.15rem; color: #A8C8D8; font-weight: 500; max-width: 58ch; }
+    .muted { color: var(--text-soft); }
+    .gold  { color: var(--gold); }
+    .cyan  { color: var(--cyan); }
+    .center { text-align: center; }
+    .mono { font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; color: var(--cyan2); letter-spacing: 0.04em; }
+
+    .section-id { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 12px; }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 6px 14px;
+      border: 1px solid var(--border-strong);
+      background: var(--cyan-dim);
+      color: var(--cyan);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+
+    .eyebrow::before { content: "//"; opacity: 0.5; font-size: 10px; }
+
+    /* ── NAV ── */
+    .nav-sticky {
+      position: fixed; top: 2px; left: 0; right: 0; z-index: 900;
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-sticky.scrolled {
+      background: rgba(3,4,10,0.92); backdrop-filter: blur(20px);
+      border-bottom-color: var(--border);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.6), 0 0 0 0.5px rgba(0,229,200,0.1);
+    }
+
+    .nav { display: flex; justify-content: space-between; align-items: center; height: var(--nav-h); }
+
+    .brand { display: flex; align-items: center; gap: 14px; font-family: 'Orbitron', monospace; font-weight: 700; letter-spacing: 0.06em; font-size: 0.85rem; text-transform: uppercase; }
+
+    .brand-mark {
+      width: 44px; height: 44px; display: grid; place-items: center;
+      background: linear-gradient(135deg, rgba(0,229,200,0.2), rgba(255,0,119,0.1));
+      border: 1px solid var(--border-strong);
+      font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--cyan);
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+      transition: box-shadow 0.25s;
+    }
+
+    .brand:hover .brand-mark { box-shadow: 0 0 20px rgba(0,229,200,0.35); }
+
+    .brand-sub { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--text-soft); letter-spacing: 0.04em; margin-top: 2px; }
+
+    .nav-links { display: flex; gap: 2px; font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; }
+
+    .nav-links a { padding: 6px 12px; color: var(--text-soft); text-transform: uppercase; transition: color 0.2s; position: relative; }
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-links a::after { content: ""; position: absolute; bottom: 2px; left: 12px; right: 12px; height: 1px; background: var(--cyan); transform: scaleX(0); transition: transform 0.2s; }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--cyan); }
+
+    .nav-links .nav-cta {
+      background: rgba(0,229,200,0.1); color: var(--cyan); border: 1px solid var(--border-strong);
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); padding: 6px 16px;
+    }
+    .nav-links .nav-cta::after { display: none; }
+    .nav-links .nav-cta:hover { background: var(--cyan); color: var(--bg); box-shadow: 0 0 20px var(--cyan-glow); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; border: 1px solid var(--border); background: var(--cyan-dim); }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--cyan); transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu { display: none; position: fixed; top: calc(2px + var(--nav-h)); left: 0; right: 0; background: rgba(3,4,10,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 16px; z-index: 899; flex-direction: column; gap: 4px; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { padding: 14px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); border-left: 2px solid transparent; transition: color 0.2s, border-color 0.2s, background 0.2s; }
+    .mobile-menu a:hover { color: var(--cyan); border-left-color: var(--cyan); background: var(--cyan-dim); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 80vh; display: flex; align-items: center;
+      padding: calc(var(--nav-h) + 60px) 0 72px;
+      text-align: center; position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+      width: 900px; height: 900px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,229,200,0.04), transparent 65%);
+      pointer-events: none;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 50px; padding: 0 24px;
+      font-family: 'Share Tech Mono', monospace; font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border: 1px solid transparent; cursor: pointer; position: relative; overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    }
+
+    .btn::before { content: ""; position: absolute; top: -100%; left: -100%; width: 300%; height: 300%; background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%); transition: top 0.4s, left 0.4s; }
+    .btn:hover::before { top: -50%; left: -50%; }
+    .btn:active { transform: translateY(1px) scale(0.99); }
+
+    .btn-primary { background: var(--cyan); color: var(--bg); border-color: var(--cyan); box-shadow: 0 0 20px rgba(0,229,200,0.3); }
+    .btn-primary:hover { background: white; box-shadow: 0 0 40px rgba(0,229,200,0.6); transform: translateY(-2px); }
+
+    .btn-secondary { background: transparent; color: var(--cyan); border-color: var(--border-strong); }
+    .btn-secondary:hover { background: var(--cyan-dim); border-color: var(--cyan); box-shadow: 0 0 20px rgba(0,229,200,0.15); transform: translateY(-2px); }
+
+    .btn-gold { background: var(--gold-dim); color: var(--gold); border-color: rgba(240,192,64,0.3); }
+    .btn-gold:hover { background: rgba(240,192,64,0.2); border-color: var(--gold); box-shadow: 0 0 20px rgba(240,192,64,0.2); transform: translateY(-2px); }
+
+    .btn-mag { background: var(--mag-dim); color: var(--magenta); border-color: rgba(255,0,119,0.3); }
+    .btn-mag:hover { background: rgba(255,0,119,0.18); border-color: var(--magenta); box-shadow: 0 0 24px rgba(255,0,119,0.25); transform: translateY(-2px); }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 14px; justify-content: center; }
+
+    /* ── GRIDS ── */
+    .grid-2, .grid-3, .grid-4 { display: grid; gap: 16px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+
+    /* ── CARDS ── */
+    .card {
+      background: linear-gradient(135deg, rgba(0,229,200,0.04), rgba(0,0,0,0.3));
+      border: 1px solid var(--border); padding: 26px; position: relative;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      height: 100%;
+    }
+
+    .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); opacity: 0; transition: opacity 0.3s; }
+    .card:hover { transform: translateY(-4px); border-color: var(--border-strong); box-shadow: var(--shadow-cyan); }
+    .card:hover::before { opacity: 0.7; }
+
+    /* corner brackets */
+    .card .corner { position: absolute; width: 16px; height: 16px; border-color: var(--cyan); border-style: solid; opacity: 0.4; transition: opacity 0.25s, width 0.25s, height 0.25s; }
+    .card:hover .corner { opacity: 0.9; width: 22px; height: 22px; }
+    .card .corner.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .card .corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+    .card .corner.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+    .card .corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+    /* ── BEAT CARDS ── */
+    .beat-card {
+      background: linear-gradient(135deg, rgba(0,229,200,0.04), rgba(0,0,0,0.35));
+      border: 1px solid var(--border); padding: 26px; position: relative;
+      display: flex; flex-direction: column;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      overflow: hidden;
+    }
+
+    .beat-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--magenta)); opacity: 0; transition: opacity 0.3s; }
+    .beat-card:hover { transform: translateY(-5px); border-color: var(--border-strong); box-shadow: var(--shadow-cyan); }
+    .beat-card:hover::before { opacity: 1; }
+
+    .beat-tag {
+      display: inline-block; padding: 4px 10px;
+      background: var(--cyan-dim); border: 1px solid var(--border-strong); color: var(--cyan);
+      font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 12px; align-self: flex-start;
+    }
+
+    .beat-card h3 { color: var(--text); margin-bottom: 10px; }
+    .beat-card p { flex: 1; }
+    .beat-card .btn { margin-top: 18px; align-self: flex-start; }
+
+    /* ── STEP CARDS ── */
+    .step-number {
+      font-family: 'Orbitron', monospace; font-size: 2rem; font-weight: 900;
+      color: transparent; -webkit-text-stroke: 1px var(--cyan); opacity: 0.5;
+      margin-bottom: 10px; line-height: 1;
+    }
+
+    /* ── HUD HIGHLIGHT ── */
+    .hud-highlight {
+      background: linear-gradient(135deg, rgba(0,229,200,0.07), rgba(255,0,119,0.03), rgba(0,0,0,0.4));
+      border: 1px solid var(--border-strong); padding: 36px 32px; position: relative; overflow: hidden;
+    }
+
+    .hud-highlight::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--gold), transparent); }
+
+    .hud-highlight .corner { position: absolute; width: 20px; height: 20px; border-color: var(--cyan); border-style: solid; opacity: 0.5; }
+    .hud-highlight .corner.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .hud-highlight .corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+    /* ── FOOTER ── */
+    .footer { padding: 24px 0 40px; }
+
+    .footer-card {
+      padding: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;
+      background: linear-gradient(135deg, rgba(0,229,200,0.04), rgba(0,0,0,0.4));
+      border: 1px solid var(--border); position: relative;
+    }
+
+    .footer-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--cyan), var(--magenta), transparent); }
+
+    .footer-links { display: flex; flex-wrap: wrap; gap: 4px; }
+    .footer-links a { padding: 6px 12px; font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); transition: color 0.2s, background 0.2s; }
+    .footer-links a:hover { color: var(--cyan); background: var(--cyan-dim); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+
+    :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+    #scroll-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: var(--cyan-dim); border: 1px solid var(--border-strong); color: var(--cyan); display: grid; place-items: center; cursor: pointer; z-index: 800; opacity: 0; transform: translateY(10px); transition: opacity 0.3s, transform 0.3s, background 0.2s, box-shadow 0.2s; font-family: 'Share Tech Mono', monospace; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); }
+    #scroll-top.visible { opacity: 1; transform: translateY(0); }
+    #scroll-top:hover { background: rgba(0,229,200,0.2); box-shadow: 0 0 20px rgba(0,229,200,0.3); transform: translateY(-3px); }
+
+    @media (max-width: 980px) {
+      .grid-4, .grid-3, .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @media (max-width: 640px) {
+      .section { padding: 56px 0; }
+      .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .cta-row { flex-direction: column; }
+      .btn { width: 100%; }
+      .hud-highlight { padding: 24px 20px; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--border);background:var(--cyan-dim)}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--cyan);transition:transform .25s,opacity .25s}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{display:none;position:fixed;top:calc(2px + var(--nav-h));left:0;right:0;background:rgba(3,4,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:16px;z-index:899;flex-direction:column;gap:4px}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{padding:14px 16px;font-family:'Share Tech Mono',monospace;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);border-left:2px solid transparent;transition:color .2s,border-color .2s,background .2s}
+    .mobile-menu a:hover,.mobile-menu a.active{color:var(--cyan);border-left-color:var(--cyan);background:var(--cyan-dim)}
+    @media(max-width:980px){.hamburger{display:flex}}
+  </style>
+</head>
+<body>
+
+  <div id="scroll-progress"></div>
+
+  <!-- ══ NAV ══ -->
+  <div class="nav-sticky" id="stickyNav">
+    <div class="wrap">
+      <nav class="nav">
+        <a class="brand" href="index.html">
+          <div class="brand-mark">NMG</div>
+          <div>
+            <div>Acedawgbeatz</div>
+            <div class="brand-sub">Sound Designer — Neural Music Group</div>
+          </div>
+        </a>
+        <div class="nav-links" id="navLinks">
+          <a href="index.html">Catalog</a>
+          <a href="vault.html">Vault 🔓</a>
+          <a href="packs.html">Packs</a>
+          <a href="openverse.html" class="active">Open Verse</a>
+          <a href="sync.html">Sync</a>
+          <a href="bio.html">Bio</a>
+          <a href="contact.html" class="nav-cta">Contact</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Catalog</a>
+    <a href="vault.html">Vault 🔓</a>
+    <a href="packs.html">Packs</a>
+    <a href="openverse.html" class="active">Open Verse</a>
+    <a href="sync.html">Sync</a>
+    <a href="bio.html">Bio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-link">Catalog</a>
+    <a href="#beats" class="mobile-link">Open Verse</a>
+    <a href="#how" class="mobile-link">How It Works</a>
+    <a href="index.html#capture" class="mobile-link">⚡ Get 3 Free Beats</a>
+  </div>
+
+  <!-- ══ HERO ══ -->
+  <div class="hero">
+    <div class="wrap">
+      <span class="section-id reveal">SYS::OV // OPEN VERSE SESSIONS</span>
+      <div class="eyebrow reveal reveal-delay-1">Featured Lane</div>
+      <h1 class="reveal reveal-delay-2" style="margin-top: 18px; max-width: 14ch; margin-left: auto; margin-right: auto;">Open Verse Sessions</h1>
+      <p class="lead reveal reveal-delay-3" style="margin: 18px auto 0; text-align: center;">Hook-ready records built for artists, creators, and collaborative content. Jump on the beat, record your verse, and share your performance.</p>
+      <div class="cta-row reveal reveal-delay-4">
+        <a class="btn btn-primary" href="https://beatstars.com">⚡ Browse Open Verse Beats</a>
+        <a class="btn btn-secondary" href="index.html">// Back to Catalog</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ BEATS ══ -->
+  <section class="section alt" id="beats">
+    <div class="wrap">
+      <span class="section-id reveal">SYS::01 // BEAT INDEX</span>
+      <div class="eyebrow reveal reveal-delay-1">Open Verse Sessions Vol. 1</div>
+      <h2 class="reveal reveal-delay-2" style="margin-top: 16px;">Performance-ready beats designed for artists to jump on instantly.</h2>
+      <div class="grid-4" style="margin-top: 32px;">
+
+        <div class="beat-card reveal reveal-delay-1">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <div class="beat-tag">Trap Soul</div>
+          <h3>Late Night Confession</h3>
+          <p>Trap soul emotion with space for melodic verses.</p>
+          <a class="btn btn-secondary" href="#">→ Listen</a>
+        </div>
+
+        <div class="beat-card reveal reveal-delay-2">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <div class="beat-tag">Afro-Soul</div>
+          <h3>No Rush Tonight</h3>
+          <p>Afro-soul groove with smooth late-night energy.</p>
+          <a class="btn btn-secondary" href="#">→ Listen</a>
+        </div>
+
+        <div class="beat-card reveal reveal-delay-3">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <div class="beat-tag">Dark R&B</div>
+          <h3>Velvet After Dark</h3>
+          <p>Minimal R&B atmosphere built for sensual records.</p>
+          <a class="btn btn-secondary" href="#">→ Listen</a>
+        </div>
+
+        <div class="beat-card reveal reveal-delay-4">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <div class="beat-tag">Melodic Trap</div>
+          <h3>Broken Halo</h3>
+          <p>Dark melodic trap with emotional space.</p>
+          <a class="btn btn-secondary" href="#">→ Listen</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ HOW IT WORKS ══ -->
+  <section class="section" id="how">
+    <div class="wrap">
+      <span class="section-id reveal">SYS::02 // PROTOCOL</span>
+      <div class="eyebrow reveal reveal-delay-1">How Open Verse Sessions Work</div>
+      <div class="grid-4" style="margin-top: 32px;">
+
+        <div class="card reveal reveal-delay-1">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <div class="step-number">01</div>
+          <h3>Pick a Beat</h3>
+          <p>Browse the open verse beats and find one that fits your style.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <div class="step-number">02</div>
+          <h3>Record Your Verse</h3>
+          <p>Write your lyrics and record your verse over the instrumental.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <div class="step-number">03</div>
+          <h3>Post Your Version</h3>
+          <p>Share your performance on TikTok, Instagram, or YouTube.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-4">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <div class="step-number">04</div>
+          <h3>Tag Acedawgbeatz</h3>
+          <p>Tag the record so we can repost and spotlight the best artists.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ══ -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="hud-highlight reveal">
+        <div class="corner tl"></div>
+        <div class="corner br"></div>
+        <div style="display:grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center;">
+          <div>
+            <span class="section-id">SYS::03 // READY TO RECORD</span>
+            <div class="eyebrow" style="margin-bottom: 16px;">Ready to Record?</div>
+            <h2>Explore the Open Verse catalog and start your next record.</h2>
+            <p style="margin-top: 12px;">I leave 16 bars open on select drops. Best verse gets a repost, a free beat bundle, and NMG development consideration.</p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; min-width: 220px;">
+            <a class="btn btn-primary" href="https://beatstars.com">⚡ Browse BeatStars</a>
+            <a class="btn btn-secondary" href="index.html">// Back to Catalog</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-card">
+        <div>
+          <strong style="font-family:'Orbitron',monospace;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;">Acedawgbeatz</strong><br>
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim)">Open Verse Sessions — Jump on. Record. Post.</span>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Catalog</a>
+          <a href="vault.html">Vault</a>
+          <a href="packs.html">Packs</a>
+          <a href="openverse.html">Open Verse</a>
+          <a href="sync.html">Sync</a>
+          <a href="bio.html">Bio</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <script>
+    const progressBar = document.getElementById('scroll-progress');
+    const stickyNav   = document.getElementById('stickyNav');
+    const scrollTopBtn = document.getElementById('scroll-top');
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    function onScroll() {
+      const y = window.scrollY;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (docH > 0 ? (y / docH) * 100 : 0) + '%';
+      stickyNav.classList.toggle('scrolled', y > 20);
+      scrollTopBtn.classList.toggle('visible', y > 300);
+    }
+
+    window.onScroll();
+
+    new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } }),
+      { threshold: 0.07, rootMargin: '0px 0px -28px 0px' }
+    ).observe && document.querySelectorAll('.reveal').forEach(el =>
+      new IntersectionObserver(
+        ([e]) => { if (e.isIntersecting) { e.target.classList.add('visible'); } },
+        { threshold: 0.07, rootMargin: '0px 0px -28px 0px' }
+      ).observe(el)
+    );
+
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => {
+      mobileMenu.classList.remove('open'); hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded', false);
+    }));
+  </script>
+</body>
+</html>

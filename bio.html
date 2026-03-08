@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anthony "Acedawg" Boyd | Bio</title>
+  <meta name="description" content="Singer, songwriter, producer, engineer, and publisher Anthony 'Acedawg' Boyd. Acedawg's story, awards, discography, milestones, and legacy in independent music." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #03040A;
+      --bg2: #060811;
+      --cyan: #00E5C8;
+      --cyan-dim: rgba(0,229,200,0.10);
+      --cyan-glow: rgba(0,229,200,0.22);
+      --magenta: #FF0077;
+      --gold: #F0C040;
+      --gold-dim: rgba(240,192,64,0.10);
+      --text: #D8E8F0;
+      --text-soft: #87A6BB;
+      --text-dim: #3A5060;
+      --border: rgba(0,229,200,0.14);
+      --border-strong: rgba(0,229,200,0.30);
+      --nav-h: 66px;
+      --shadow: 0 0 28px rgba(0,229,200,0.12), 0 0 64px rgba(0,229,200,0.04);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Rajdhani', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,229,200,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,200,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: drift 28s linear infinite;
+    }
+    body::after {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; z-index: 1;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px);
+    }
+    @keyframes drift { 100% { background-position: 60px 60px; } }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    #progress {
+      position: fixed; top: 0; left: 0; width: 0%; height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--gold));
+      box-shadow: 0 0 12px var(--cyan), 0 0 22px rgba(0,229,200,0.35);
+      z-index: 9999;
+    }
+
+    .wrap { width: min(1240px, calc(100% - 32px)); margin: 0 auto; position: relative; z-index: 2; }
+    .section { padding: 80px 0; }
+    .section.alt { background: linear-gradient(180deg, rgba(0,229,200,0.02), transparent); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    h1,h2,h3 {
+      font-family: 'Orbitron', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1.06;
+    }
+    h1 { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 800; }
+    h3 { font-size: 1rem; font-weight: 700; letter-spacing: 0.05em; }
+    p { color: var(--text-soft); font-size: 1.06rem; margin-bottom: 14px; }
+    .lead { font-size: 1.18rem; color: #A7C9D7; max-width: 62ch; }
+    .mono { font-family: 'Share Tech Mono', monospace; font-size: 0.82rem; color: var(--cyan); letter-spacing: 0.08em; text-transform: uppercase; }
+    .gold { color: var(--gold); }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 6px 14px; border: 1px solid var(--border-strong); background: var(--cyan-dim);
+      color: var(--cyan); font-family: 'Share Tech Mono', monospace; font-size: 11px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+    .eyebrow::before { content: "//"; opacity: 0.5; font-size: 10px; }
+
+    .nav-sticky {
+      position: fixed; top: 2px; left: 0; right: 0; z-index: 900;
+      transition: background .3s, box-shadow .3s, border-color .3s;
+      border-bottom: 1px solid transparent;
+    }
+    .nav-sticky.scrolled {
+      background: rgba(3,4,10,0.92); backdrop-filter: blur(20px);
+      border-bottom-color: var(--border); box-shadow: 0 4px 40px rgba(0,0,0,0.6);
+    }
+    .nav {
+      height: var(--nav-h); display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-mark {
+      width: 44px; height: 44px; display: grid; place-items: center;
+      background: linear-gradient(135deg, rgba(0,229,200,0.20), rgba(255,0,119,0.10));
+      border: 1px solid var(--border-strong); color: var(--cyan);
+      font-family: 'Share Tech Mono', monospace; font-size: .72rem;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+    .brand-copy strong { display:block; font-family:'Orbitron', monospace; font-size:.88rem; text-transform:uppercase; }
+    .brand-copy span { display:block; font-family:'Share Tech Mono', monospace; font-size:.68rem; color: var(--text-soft); text-transform:uppercase; letter-spacing:.05em; }
+    .nav-links { display:flex; gap:2px; font-family:'Share Tech Mono', monospace; font-size:.75rem; letter-spacing:.08em; }
+    .nav-links a { padding: 6px 11px; color: var(--text-soft); text-transform:uppercase; position:relative; }
+    .nav-links a:hover, .nav-links a.active { color: var(--cyan); }
+    .nav-links a::after { content:""; position:absolute; left:11px; right:11px; bottom:2px; height:1px; background: var(--cyan); transform:scaleX(0); transition:transform .2s; }
+    .nav-links a:hover::after, .nav-links a.active::after { transform:scaleX(1); }
+
+    .hero {
+      padding: calc(var(--nav-h) + 62px) 0 72px;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .hero::before {
+      content: ""; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      width: 920px; height: 920px; border-radius:50%;
+      background: radial-gradient(circle, rgba(0,229,200,0.04), transparent 65%);
+      pointer-events:none;
+    }
+    .hero-grid { display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items:center; }
+    .hero-card, .panel {
+      background: linear-gradient(135deg, rgba(0,229,200,0.05), rgba(0,0,0,0.42));
+      border: 1px solid var(--border); padding: 30px; position:relative; overflow:hidden;
+      box-shadow: var(--shadow);
+    }
+    .hero-card::before, .panel::before {
+      content:""; position:absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity:.7;
+    }
+    .corner { position:absolute; width:18px; height:18px; border-color: var(--cyan); border-style:solid; opacity:.5; }
+    .corner.tl { top:-1px; left:-1px; border-width:2px 0 0 2px; }
+    .corner.tr { top:-1px; right:-1px; border-width:2px 2px 0 0; }
+    .corner.bl { bottom:-1px; left:-1px; border-width:0 0 2px 2px; }
+    .corner.br { bottom:-1px; right:-1px; border-width:0 2px 2px 0; }
+
+    .cta-row { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; min-height:50px; padding:0 24px;
+      font-family:'Share Tech Mono', monospace; font-size:.82rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      border:1px solid transparent; cursor:pointer; position:relative; overflow:hidden;
+      transition:transform .2s, box-shadow .2s, background .2s, color .2s;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    }
+    .btn::before { content:""; position:absolute; top:-100%; left:-100%; width:300%; height:300%; background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,.06) 50%, transparent 60%); transition: top .4s,left .4s; }
+    .btn:hover::before { top:-50%; left:-50%; }
+    .btn-primary { background: var(--cyan); color: var(--bg); box-shadow: 0 0 20px rgba(0,229,200,0.28); }
+    .btn-primary:hover { background:#fff; box-shadow: 0 0 40px rgba(0,229,200,0.5); transform:translateY(-2px); }
+    .btn-secondary { background:transparent; color:var(--cyan); border-color: var(--border-strong); }
+    .btn-secondary:hover { background: var(--cyan-dim); transform:translateY(-2px); }
+    .btn-gold { background: var(--gold-dim); color: var(--gold); border-color: rgba(240,192,64,.3); }
+    .btn-gold:hover { background: rgba(240,192,64,.18); transform:translateY(-2px); }
+
+    .stat-grid, .grid-2, .grid-3, .grid-4 { display:grid; gap:16px; }
+    .stat-grid { grid-template-columns: repeat(2, minmax(0,1fr)); margin-top: 20px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+
+    .stat, .card, .timeline-item, .gallery-card {
+      background: linear-gradient(135deg, rgba(0,229,200,0.04), rgba(0,0,0,0.34));
+      border: 1px solid var(--border); padding: 22px; position:relative; transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
+    .stat:hover, .card:hover, .timeline-item:hover, .gallery-card:hover { transform: translateY(-4px); border-color: var(--border-strong); box-shadow: var(--shadow); }
+    .stat strong { display:block; font-family:'Orbitron', monospace; color:var(--text); font-size:.78rem; margin-bottom:6px; text-transform:uppercase; }
+    .stat span { color:var(--text-soft); font-size:.95rem; }
+
+    .card h3, .timeline-item h3 { color: var(--text); margin-bottom: 10px; }
+    .card ul { list-style:none; margin-top:12px; }
+    .card li { padding:5px 0 5px 14px; color: var(--text-soft); position:relative; }
+    .card li::before { content: ">"; position:absolute; left:0; color: var(--cyan); opacity:.65; font-family:'Share Tech Mono', monospace; }
+
+    .timeline { position:relative; display:grid; gap:16px; margin-top: 26px; }
+    .timeline::before { content:""; position:absolute; top:0; bottom:0; left:16px; width:1px; background: linear-gradient(var(--cyan), transparent); opacity:.5; }
+    .timeline-item { padding-left:48px; }
+    .timeline-item::before {
+      content:""; position:absolute; left:10px; top:26px; width:12px; height:12px; border-radius:50%;
+      background: var(--cyan); box-shadow:0 0 12px rgba(0,229,200,.4);
+    }
+    .timeline-year { display:inline-block; margin-bottom:8px; color:var(--gold); font-family:'Share Tech Mono', monospace; font-size:.76rem; letter-spacing:.12em; text-transform:uppercase; }
+
+    .quote {
+      padding: 28px; border:1px solid var(--border-strong); background: linear-gradient(135deg, rgba(0,229,200,0.06), rgba(255,0,119,0.03), rgba(0,0,0,0.35));
+      position:relative;
+    }
+    .quote::before { content:""; position:absolute; top:0; left:0; right:0; height:1px; background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--gold), transparent); }
+    .quote p { font-size: 1.12rem; color:#B7D3DD; margin:0; }
+
+    .gallery-card { padding: 12px; }
+    .gallery-card img { width:100%; aspect-ratio: 1 / 1; object-fit: cover; border:1px solid var(--border); background:#0B1018; }
+    .gallery-card.wide img { aspect-ratio: 4 / 5; }
+    .gallery-card h3 { margin: 14px 0 8px; color: var(--text); font-size:.9rem; }
+    .gallery-card p { font-size:.95rem; margin:0; }
+
+    .footer { padding: 24px 0 44px; }
+    .footer-card {
+      padding:24px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px;
+      background: linear-gradient(135deg, rgba(0,229,200,0.04), rgba(0,0,0,0.4)); border:1px solid var(--border); position:relative;
+    }
+    .footer-card::before { content:""; position:absolute; top:0; left:0; right:0; height:1px; background: linear-gradient(90deg, var(--cyan), var(--magenta), transparent); }
+    .footer-links { display:flex; flex-wrap:wrap; gap:4px; }
+    .footer-links a { padding:6px 12px; font-family:'Share Tech Mono', monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-soft); }
+    .footer-links a:hover { color:var(--cyan); background: var(--cyan-dim); }
+
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity .5s ease, transform .5s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+    .reveal-delay-1 { transition-delay:.08s; }
+    .reveal-delay-2 { transition-delay:.16s; }
+    .reveal-delay-3 { transition-delay:.24s; }
+    .reveal-delay-4 { transition-delay:.32s; }
+
+    #scroll-top {
+      position: fixed; bottom: 24px; right: 24px; width: 44px; height: 44px;
+      display:grid; place-items:center; border:1px solid var(--border-strong); background: var(--cyan-dim); color: var(--cyan);
+      cursor:pointer; opacity:0; transform:translateY(10px); transition:opacity .3s, transform .3s; z-index:800;
+      font-family:'Share Tech Mono', monospace;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+    #scroll-top.visible { opacity:1; transform:none; }
+
+    @media (max-width: 1080px) {
+      .hero-grid, .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr 1fr; }
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 980px) {
+      .nav-links { display:none; }
+    }
+    @media (max-width: 760px) {
+      .section { padding: 58px 0; }
+      .grid-4, .grid-3, .grid-2, .stat-grid { grid-template-columns: 1fr; }
+      .cta-row { flex-direction:column; }
+      .btn { width:100%; }
+      .timeline::before { left:12px; }
+      .timeline-item { padding-left:40px; }
+      .timeline-item::before { left:6px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity:1; transform:none; }
+    }
+      .brand-sub{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--text-soft)}
+  
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--border);background:var(--cyan-dim)}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--cyan);transition:transform .25s,opacity .25s}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{display:none;position:fixed;top:calc(2px + var(--nav-h, 66px));left:0;right:0;background:rgba(3,4,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:16px;z-index:899;flex-direction:column;gap:4px}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{padding:14px 16px;font-family:'Share Tech Mono',monospace;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);border-left:2px solid transparent;transition:color .2s,border-color .2s,background .2s}
+    .mobile-menu a:hover,.mobile-menu a.active{color:var(--cyan);border-left-color:var(--cyan);background:var(--cyan-dim)}
+    @media(max-width:980px){.hamburger{display:flex}}
+  </style>
+</head>
+<body>
+  <div id="progress"></div>
+
+  <div class="nav-sticky" id="stickyNav">
+    <div class="wrap">
+      <nav class="nav">
+        <a class="brand" href="index.html">
+          <div class="brand-mark">NMG</div>
+          <div>
+            <div>Acedawgbeatz</div>
+            <div class="brand-sub">Sound Designer — Neural Music Group</div>
+          </div>
+        </a>
+        <div class="nav-links" id="navLinks">
+          <a href="index.html">Catalog</a>
+          <a href="vault.html">Vault 🔓</a>
+          <a href="packs.html">Packs</a>
+          <a href="openverse.html">Open Verse</a>
+          <a href="sync.html">Sync</a>
+          <a href="bio.html" class="active">Bio</a>
+          <a href="contact.html" class="nav-cta">Contact</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Catalog</a>
+    <a href="vault.html">Vault 🔓</a>
+    <a href="packs.html">Packs</a>
+    <a href="openverse.html">Open Verse</a>
+    <a href="sync.html">Sync</a>
+    <a href="bio.html" class="active">Bio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow reveal">Artist Bio</div>
+          <h1 class="reveal reveal-delay-1" style="margin-top:16px;">Anthony "Acedawg" Boyd</h1>
+          <p class="lead reveal reveal-delay-2" style="margin-top:16px;">Singer, songwriter, producer, engineer, and publisher. Acedawg has carved his own lane in music since 2000, building records, commercial music, and independent releases from the ground up.</p>
+          <p class="reveal reveal-delay-3">He released <span class="gold">Acedawg Productions Vol. 1</span> as an independently distributed project through MP3.com and D.A.M. CD distribution, helping establish an early worldwide online pathway for independent music. He later composed the <span class="gold">A Step In Time Chimney Sweeps</span> commercial, which went on to win the <span class="gold">2008 Best Commercial in Virginia</span>.</p>
+          <div class="cta-row reveal reveal-delay-4">
+            <a class="btn btn-primary" href="index.html">Browse Catalog</a>
+            <a class="btn btn-secondary" href="openverse.html">Open Verse Sessions</a>
+            <a class="btn btn-gold" href="#gallery">View Legacy</a>
+          </div>
+        </div>
+
+        <div class="hero-card reveal reveal-delay-2">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <div class="mono">Career Snapshot</div>
+          <div class="stat-grid">
+            <div class="stat"><strong>Started</strong><span>1996–2000 engineering and production foundation</span></div>
+            <div class="stat"><strong>Independent Release</strong><span>Acedawg Productions Vol. 1 — 2000</span></div>
+            <div class="stat"><strong>Award</strong><span>Producer of the Year — 2002</span></div>
+            <div class="stat"><strong>Broadcast Award</strong><span>Best Commercial in Virginia — 2008</span></div>
+          </div>
+          <p style="margin-top:20px;">Too Tight Productions, Eaton Entertainment, Rock-On Records, D.S.G. Entertainment, and High Voltage Records all helped shape the engineering and production lane that became Acedawg’s sound. fileciteturn6file4</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="story">
+    <div class="wrap">
+      <div class="eyebrow reveal">Origin Story</div>
+      <h2 class="reveal reveal-delay-1" style="margin-top:16px;">Independent before it was fashionable</h2>
+      <div class="grid-2" style="margin-top:26px;">
+        <div class="panel reveal reveal-delay-2">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <p>Anthony “Acedawg” Boyd’s lane was never built by waiting for permission. He was already engineering, recording, writing, and shaping records in Virginia while studying the craft from the inside out. By 2000, he released <span class="gold">Acedawg Productions Vol. 1</span>, a collection of songs recorded with friends locally and distributed online worldwide through MP3.com and D.A.M. CDs — a major independent move for that era. fileciteturn6file4</p>
+          <p>That early move matters. It shows a producer who understood the future before the crowd caught up — recording locally, publishing independently, and distributing globally.</p>
+        </div>
+        <div class="quote reveal reveal-delay-3">
+          <p>“This is not random beat posting. This is catalog building, sound design, songwriting, production, and publishing with long-term replay value.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="timeline">
+    <div class="wrap">
+      <div class="eyebrow reveal">Career Timeline</div>
+      <h2 class="reveal reveal-delay-1" style="margin-top:16px;">Built from rooms, stages, radio, and records</h2>
+      <div class="timeline">
+        <div class="timeline-item reveal reveal-delay-1">
+          <span class="timeline-year">1996–2000</span>
+          <h3>Engineering & Production Foundation</h3>
+          <p>Audio engineering internship at Too Tight Productions in Norfolk, followed by work across Eaton Entertainment, Rock-On Records, D.S.G. Entertainment, and High Voltage Records. fileciteturn6file4</p>
+        </div>
+        <div class="timeline-item reveal reveal-delay-2">
+          <span class="timeline-year">1997</span>
+          <h3>Stage & Performance Credentials</h3>
+          <p>Performed and engineered in local circuits and events, including Hampton Convocation Center, Virginia House of Comedy, and Youth Business Expo. fileciteturn6file4</p>
+        </div>
+        <div class="timeline-item reveal reveal-delay-3">
+          <span class="timeline-year">2000</span>
+          <h3>Independent Worldwide Release</h3>
+          <p>Released <span class="gold">Acedawg Productions Vol. 1</span>, distributed online worldwide via MP3.com / D.A.M. CD systems, establishing an early independent digital pathway. fileciteturn6file4</p>
+        </div>
+        <div class="timeline-item reveal reveal-delay-4">
+          <span class="timeline-year">2002</span>
+          <h3>Producer of the Year</h3>
+          <p>Recognized by Blendzville / 92.1 as Producer of the Year, validating his production room reputation and local impact. fileciteturn6file4</p>
+        </div>
+        <div class="timeline-item reveal reveal-delay-1">
+          <span class="timeline-year">2008</span>
+          <h3>Best Commercial in Virginia</h3>
+          <p>The <span class="gold">A Step In Time Chimney Sweeps</span> commercial, written by Ray Gessner and composed by Anthony “Acedawg” Boyd in 2007, won the <span class="gold">2008 Best Commercial in Virginia Award</span> from the Virginia Association of Broadcasters. fileciteturn6file4</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="awards">
+    <div class="wrap">
+      <div class="eyebrow reveal">Awards & Credentials</div>
+      <h2 class="reveal reveal-delay-1" style="margin-top:16px;">Proof of work</h2>
+      <div class="grid-3" style="margin-top:26px;">
+        <div class="card reveal reveal-delay-1">
+          <h3>Recognitions</h3>
+          <ul>
+            <li>Blendzville Producer of the Year — 2002</li>
+            <li>ASCAP Plus Awards — 2000 to 2007</li>
+            <li>Best Commercial in Virginia — 2008</li>
+          </ul>
+        </div>
+        <div class="card reveal reveal-delay-2">
+          <h3>Commercial / Broadcast Work</h3>
+          <ul>
+            <li>A Step In Time Chimney Sweeps</li>
+            <li>Norfolk Nighthawks commercial</li>
+            <li>Making of a Model</li>
+            <li>Vision Church International Ministries</li>
+          </ul>
+        </div>
+        <div class="card reveal reveal-delay-3">
+          <h3>Discography Highlights</h3>
+          <ul>
+            <li>Ace Dawg Productions Vol. 1</li>
+            <li>Homegrown Vol. 1</li>
+            <li>Flight Coat Series Mixtape</li>
+            <li>Bandcamp Vol. 2 Mixtape</li>
+            <li>Tu-Treal — Bottom of Da Map</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="legacy">
+    <div class="wrap">
+      <div class="eyebrow reveal">Influence & Reach</div>
+      <h2 class="reveal reveal-delay-1" style="margin-top:16px;">More than beats</h2>
+      <div class="grid-2" style="margin-top:26px;">
+        <div class="card reveal reveal-delay-2">
+          <h3>Artists & Collaborators</h3>
+          <p>Acedawg’s work has touched singers, rappers, performers, poets, labels, and comedians across Virginia and beyond, including Doc Ice (UTFO), Brandi-Nicole, Tu-Treal, J-Reed, and many more. fileciteturn6file4</p>
+        </div>
+        <div class="card reveal reveal-delay-3">
+          <h3>Radio & Public Presence</h3>
+          <p>Songs and production have been heard on 103 Jamz, 91.1 FM Norfolk State Radio, and 92.1 FM, while performances and engineering work stretched across local clubs, expos, comedy venues, and business showcases. fileciteturn6file4</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="gallery">
+    <div class="wrap">
+      <div class="eyebrow reveal">Legacy Gallery</div>
+      <h2 class="reveal reveal-delay-1" style="margin-top:16px;">Artifacts from the journey</h2>
+      <div class="grid-3" style="margin-top:26px;">
+        <div class="gallery-card reveal reveal-delay-1">
+          <img src="producer%20of%20the%20year.jpg" alt="2002 Producer of the Year emblem" />
+          <h3>Producer of the Year — 2002</h3>
+          <p>Recognition tied to the 92.1 production room era and the local impact of Acedawg’s sound.</p>
+        </div>
+        <div class="gallery-card reveal reveal-delay-2 wide">
+          <img src="youth%20business%20expo.jpg" alt="Youth Business Expo certificate presented to Anthony Boyd" />
+          <h3>Youth Business Expo Certificate</h3>
+          <p>Public-facing recognition of creative and entrepreneurial achievement.</p>
+        </div>
+        <div class="gallery-card reveal reveal-delay-3 wide">
+          <img src="hampton%20conv%20ctr.jpg" alt="VIP pass for Hampton Convocation Center memorial day bash" />
+          <h3>Hampton Convocation Center</h3>
+          <p>VIP credential from a key live-performance chapter connected to early stage work.</p>
+        </div>
+        <div class="gallery-card reveal reveal-delay-1 wide">
+          <img src="beat%20battle%20vabeach.jpg" alt="Dynamic Producer Beat Battle producer badge" />
+          <h3>Dynamic Producer Beat Battle</h3>
+          <p>Another marker from Virginia Beach’s competitive production environment.</p>
+        </div>
+        <div class="gallery-card reveal reveal-delay-2 wide">
+          <img src="acedawg%20productions%20vol11.jpg" alt="Acedawg Productions Vol. 1 disc" />
+          <h3>Acedawg Productions Vol. 1</h3>
+          <p>The independent release that marked an early online worldwide distribution move.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="panel reveal">
+        <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+        <div class="eyebrow">Next Move</div>
+        <h2 style="margin-top:16px;">From legacy to catalog</h2>
+        <p style="margin-top:12px; max-width: 60ch;">This bio page gives your site depth. It tells visitors you are not a random internet producer — you are a real creative with years of engineering, writing, publishing, live work, awards, and independent distribution behind the brand.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="index.html">Go to Main Catalog</a>
+          <a class="btn btn-secondary" href="openverse.html">Explore Open Verse</a>
+          <a class="btn btn-gold" href="landing.html">Free Beats Vault</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-card">
+        <div>
+          <strong style="font-family:'Orbitron',monospace;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;">Acedawgbeatz</strong><br>
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim)">Anthony 'Acedawg' Boyd — 30 years building sound</span>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Catalog</a>
+          <a href="vault.html">Vault</a>
+          <a href="packs.html">Packs</a>
+          <a href="openverse.html">Open Verse</a>
+          <a href="sync.html">Sync</a>
+          <a href="bio.html">Bio</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <script>
+    const progress = document.getElementById('progress');
+    const navShell = document.getElementById('stickyNav');
+    const scrollTopBtn = document.getElementById('scroll-top');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    function onScroll() {
+      const y = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
+      navShell.classList.toggle('scrolled', y > 20);
+      scrollTopBtn.classList.toggle('visible', y > 350);
+      let current = '';
+      sections.forEach(s => { if (s.getBoundingClientRect().top < window.innerHeight * 0.45) current = s.id; });
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

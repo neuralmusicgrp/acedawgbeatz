@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vault Unlocked | Acedawgbeatz</title>
+  <meta name="description" content="Thanks for joining the Acedawgbeatz list. Your vault access is unlocked." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #03040A;
+      --cyan:     #00E5C8;
+      --cyan2:    #00BFAA;
+      --cyan-dim: rgba(0,229,200,0.10);
+      --cyan-glow:rgba(0,229,200,0.25);
+      --magenta:  #FF0077;
+      --mag-dim:  rgba(255,0,119,0.10);
+      --gold:     #F0C040;
+      --gold-dim: rgba(240,192,64,0.10);
+      --text:     #D8E8F0;
+      --text-soft:#7A9AAF;
+      --text-dim: #3A5060;
+      --border:   rgba(0,229,200,0.14);
+      --border-strong: rgba(0,229,200,0.32);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Rajdhani', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      overflow-x: hidden;
+      cursor: crosshair;
+    }
+
+    /* ── GRID BG ── */
+    body::before {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,229,200,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,200,0.028) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: grid-drift 30s linear infinite;
+    }
+
+    @keyframes grid-drift { 100% { background-position: 60px 60px; } }
+
+    /* ── SCANLINES ── */
+    body::after {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; z-index: 1;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.055) 2px, rgba(0,0,0,0.055) 4px);
+    }
+
+    /* ── AMBIENT GLOW ── */
+    .ambient {
+      position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%);
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,229,200,0.05), transparent 65%);
+      pointer-events: none; z-index: 0;
+      animation: ambient-pulse 6s ease-in-out infinite;
+    }
+
+    @keyframes ambient-pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50%       { transform: translate(-50%, -50%) scale(1.15); opacity: 0.7; }
+    }
+
+    /* ── MAIN CARD ── */
+    .main-card {
+      width: min(800px, 100%);
+      background: linear-gradient(135deg, rgba(0,229,200,0.05), rgba(255,0,119,0.02), rgba(0,0,0,0.5));
+      border: 1px solid var(--border-strong);
+      padding: 48px;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      animation: card-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes card-in {
+      from { opacity: 0; transform: translateY(24px) scale(0.97); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* top chromatic line */
+    .main-card::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--gold));
+      box-shadow: 0 0 20px rgba(0,229,200,0.4);
+    }
+
+    /* ambient glow inside card */
+    .main-card::after {
+      content: "";
+      position: absolute; bottom: -80px; right: -80px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,229,200,0.07), transparent 65%);
+      pointer-events: none;
+    }
+
+    /* corner brackets */
+    .corner { position: absolute; width: 22px; height: 22px; border-color: var(--cyan); border-style: solid; opacity: 0.6; }
+    .corner.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+    .corner.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+    .corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+    /* ── STATUS LINE ── */
+    .status-line {
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'Share Tech Mono', monospace; font-size: 11px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--cyan); margin-bottom: 24px;
+    }
+
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan);
+      animation: dot-blink 1.8s ease-in-out infinite;
+    }
+
+    @keyframes dot-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* ── HEADINGS ── */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 6px 14px; border: 1px solid var(--border-strong); background: var(--cyan-dim);
+      color: var(--cyan); font-family: 'Share Tech Mono', monospace; font-size: 11px;
+      letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 18px;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+
+    .eyebrow::before { content: "//"; opacity: 0.5; font-size: 10px; }
+
+    h1 {
+      font-family: 'Orbitron', monospace; font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900; text-transform: uppercase; letter-spacing: 0.03em;
+      line-height: 1.05; margin: 0 0 16px;
+    }
+
+    h1 span { color: var(--cyan); }
+
+    p { color: var(--text-soft); font-size: 1.05rem; font-weight: 500; margin: 0 0 14px; line-height: 1.65; }
+
+    /* ── VAULT BLOCK ── */
+    .vault-block {
+      background: rgba(0,0,0,0.4); border: 1px solid var(--border);
+      padding: 22px 24px; margin: 24px 0; position: relative;
+    }
+
+    .vault-block::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--cyan), transparent); }
+
+    .vault-block strong {
+      display: block; font-family: 'Orbitron', monospace; font-size: 0.8rem;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--gold); margin-bottom: 10px;
+    }
+
+    /* ── MINI GRID ── */
+    .mini-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin: 24px 0 32px; }
+
+    .mini {
+      background: rgba(0,229,200,0.04); border: 1px solid var(--border);
+      border-left: 2px solid var(--cyan); padding: 16px; position: relative;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .mini:hover { background: rgba(0,229,200,0.07); box-shadow: 0 0 14px rgba(0,229,200,0.1); }
+
+    .mini strong { display: block; font-family: 'Orbitron', monospace; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text); margin-bottom: 8px; }
+
+    .mini span { color: var(--text-soft); font-size: 0.9rem; line-height: 1.5; }
+
+    /* ── BUTTONS ── */
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 50px; padding: 0 24px;
+      font-family: 'Share Tech Mono', monospace; font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border: 1px solid transparent; cursor: pointer; text-decoration: none;
+      position: relative; overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    }
+
+    .btn::before { content: ""; position: absolute; top: -100%; left: -100%; width: 300%; height: 300%; background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%); transition: top 0.4s, left 0.4s; }
+    .btn:hover::before { top: -50%; left: -50%; }
+    .btn:active { transform: translateY(1px) scale(0.99); }
+
+    .btn-primary { background: var(--cyan); color: var(--bg); border-color: var(--cyan); box-shadow: 0 0 20px rgba(0,229,200,0.3); }
+    .btn-primary:hover { background: white; box-shadow: 0 0 40px rgba(0,229,200,0.6); transform: translateY(-2px); }
+
+    .btn-secondary { background: transparent; color: var(--cyan); border-color: var(--border-strong); }
+    .btn-secondary:hover { background: var(--cyan-dim); border-color: var(--cyan); box-shadow: 0 0 20px rgba(0,229,200,0.15); transform: translateY(-2px); }
+
+    .btn-gold { background: var(--gold-dim); color: var(--gold); border-color: rgba(240,192,64,0.3); }
+    .btn-gold:hover { background: rgba(240,192,64,0.2); border-color: var(--gold); box-shadow: 0 0 20px rgba(240,192,64,0.2); transform: translateY(-2px); }
+
+    /* ── TIP LINE ── */
+    .tip {
+      margin-top: 24px; padding: 14px 18px;
+      background: rgba(240,192,64,0.05); border: 1px solid rgba(240,192,64,0.2);
+      border-left: 2px solid var(--gold);
+      font-family: 'Share Tech Mono', monospace; font-size: 11px;
+      letter-spacing: 0.04em; color: var(--text-soft); line-height: 1.6;
+    }
+
+    .tip::before { content: "// TIP: "; color: var(--gold); }
+
+    :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+    @media (max-width: 700px) {
+      .main-card { padding: 28px 22px; }
+      .mini-grid { grid-template-columns: 1fr; }
+      .actions { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient"></div>
+
+  <div class="main-card">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+
+    <div class="status-line">
+      <div class="status-dot"></div>
+      <span>ACCESS_GRANTED :: VAULT UNLOCKED</span>
+    </div>
+
+    <div class="eyebrow">Vault Access Unlocked</div>
+
+    <h1>You're <span>In.</span></h1>
+
+    <p>Exclusive drops and unreleased packs will hit your inbox first. This is where the stronger inventory lands before it spreads across the storefront.</p>
+
+    <div class="vault-block">
+      <strong>// Inside the Vault</strong>
+      <p style="margin:0;">Unlock 3 free beats, early pack alerts, open verse opportunities, and the 5-for-$25 bundle path that turns curiosity into actual records.</p>
+    </div>
+
+    <div class="mini-grid">
+      <div class="mini">
+        <strong>3 Free Beats</strong>
+        <span>Immediate value for writing, demos, and first contact.</span>
+      </div>
+      <div class="mini">
+        <strong>5 for $25</strong>
+        <span>Producer choice bundle for artists ready to move now.</span>
+      </div>
+      <div class="mini">
+        <strong>Early Drops</strong>
+        <span>New additions, unreleased heat, and alerts before the public sees them.</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="index.html">⚡ Browse Beat Packs</a>
+      <a class="btn btn-secondary" href="openverse.html">// Open Verse Sessions</a>
+      <a class="btn btn-gold" href="#">→ Shop BeatStars</a>
+    </div>
+
+    <div class="tip">Fastest path: go straight to the catalog and start with Late Night Soul, Trap Soul Confessions, or Open Verse Sessions.</div>
+
+  </div>
+
+</body>
+</html>

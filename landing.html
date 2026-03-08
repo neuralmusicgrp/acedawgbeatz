@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acedawgbeatz Vault | Free Beats</title>
+  <meta name="description" content="Unlock 3 free beats, exclusive drops, and 5-for-$25 bundle access from Acedawgbeatz." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#03040A;
+      --bg2:#060811;
+      --cyan:#00E5C8;
+      --cyan2:#00BFAA;
+      --mag:#FF0077;
+      --gold:#F0C040;
+      --text:#D8E8F0;
+      --text-soft:#7A9AAF;
+      --text-dim:#3A5060;
+      --border:rgba(0,229,200,0.15);
+      --border-strong:rgba(0,229,200,0.34);
+      --cyan-dim:rgba(0,229,200,0.10);
+      --gold-dim:rgba(240,192,64,0.10);
+      --mag-dim:rgba(255,0,119,0.10);
+      --shadow-cyan:0 0 30px rgba(0,229,200,0.16), 0 0 60px rgba(0,229,200,0.06);
+      --nav-h:66px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Rajdhani',system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+      cursor:crosshair;
+    }
+
+    body::before{
+      content:"";
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      background-image:
+        linear-gradient(rgba(0,229,200,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,200,0.028) 1px, transparent 1px);
+      background-size:60px 60px;
+      animation:grid-drift 30s linear infinite;
+    }
+    @keyframes grid-drift { 100% { background-position:60px 60px; } }
+
+    body::after{
+      content:"";
+      position:fixed; inset:0; z-index:1; pointer-events:none;
+      background:repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.05) 2px,
+        rgba(0,0,0,0.05) 4px
+      );
+    }
+
+    #scroll-progress{
+      position:fixed; top:0; left:0; height:2px; width:0%;
+      z-index:9999;
+      background:linear-gradient(90deg,var(--cyan),var(--mag),var(--gold));
+      box-shadow:0 0 12px var(--cyan),0 0 24px rgba(0,229,200,0.4);
+      transition:width .08s linear;
+    }
+
+    .wrap{
+      width:min(1120px, calc(100% - 32px));
+      margin:0 auto;
+      position:relative;
+      z-index:2;
+    }
+
+    a{color:inherit;text-decoration:none}
+    h1,h2,h3{
+      font-family:'Orbitron',monospace;
+      text-transform:uppercase;
+      letter-spacing:.02em;
+      line-height:1.06;
+    }
+    h1{font-size:clamp(2.4rem,5.5vw,5rem); font-weight:900}
+    h2{font-size:clamp(1.5rem,3vw,2.4rem); font-weight:800}
+    h3{font-size:.95rem; font-weight:700; letter-spacing:.06em}
+    p{color:var(--text-soft); font-size:1.05rem; margin:0 0 14px}
+    .lead{font-size:1.15rem; color:#A8C8D8; max-width:58ch}
+    .mono{font-family:'Share Tech Mono',monospace}
+    .section-id{
+      font-family:'Share Tech Mono',monospace;
+      font-size:10px; color:var(--text-dim);
+      letter-spacing:.12em; text-transform:uppercase;
+      display:block; margin-bottom:12px;
+    }
+
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:6px 14px;
+      border:1px solid var(--border-strong);
+      background:var(--cyan-dim);
+      color:var(--cyan);
+      font-family:'Share Tech Mono',monospace;
+      font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+      clip-path:polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+    .eyebrow::before{content:"//";opacity:.55;font-size:10px}
+
+    .nav-sticky{
+      position:fixed; top:2px; left:0; right:0; z-index:900;
+      border-bottom:1px solid transparent;
+      transition:background .3s,border-color .3s, box-shadow .3s;
+    }
+    .nav-sticky.scrolled{
+      background:rgba(3,4,10,.92);
+      backdrop-filter:blur(20px);
+      border-bottom-color:var(--border);
+      box-shadow:0 4px 40px rgba(0,0,0,.6),0 0 0 .5px rgba(0,229,200,.1);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      height:var(--nav-h);
+    }
+    .brand{
+      display:flex; align-items:center; gap:14px;
+      font-family:'Orbitron',monospace;
+      font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+      font-size:.85rem;
+    }
+    .brand-mark{
+      width:44px; height:44px; display:grid; place-items:center;
+      background:linear-gradient(135deg, rgba(0,229,200,.2), rgba(255,0,119,.1));
+      border:1px solid var(--border-strong);
+      color:var(--cyan);
+      font-family:'Share Tech Mono',monospace;
+      font-size:.7rem;
+      clip-path:polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+    .brand-sub{
+      font-family:'Share Tech Mono',monospace;
+      font-size:.68rem; color:var(--text-soft); letter-spacing:.04em;
+      margin-top:2px;
+    }
+    .nav-links{
+      display:flex; gap:2px;
+      font-family:'Share Tech Mono',monospace;
+      font-size:.74rem; letter-spacing:.08em;
+    }
+    .nav-links a{
+      padding:6px 12px;
+      color:var(--text-soft);
+      text-transform:uppercase;
+      position:relative;
+      transition:color .2s;
+    }
+    .nav-links a:hover{color:var(--cyan)}
+    .nav-links a::after{
+      content:""; position:absolute; bottom:2px; left:12px; right:12px;
+      height:1px; background:var(--cyan);
+      transform:scaleX(0); transition:transform .2s;
+    }
+    .nav-links a:hover::after{transform:scaleX(1)}
+    .nav-links .nav-cta{
+      background:rgba(0,229,200,.1); color:var(--cyan);
+      border:1px solid var(--border-strong);
+      padding:6px 16px;
+      clip-path:polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+    .nav-links .nav-cta::after{display:none}
+    .nav-links .nav-cta:hover{
+      background:var(--cyan); color:var(--bg);
+      box-shadow:0 0 20px rgba(0,229,200,.25);
+    }
+
+    .hamburger{
+      display:none; flex-direction:column; gap:5px; cursor:pointer;
+      padding:8px; border:1px solid var(--border); background:var(--cyan-dim);
+    }
+    .hamburger span{
+      display:block; width:22px; height:2px; background:var(--cyan);
+      transition:transform .25s, opacity .25s;
+    }
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+    .mobile-menu{
+      display:none; position:fixed; top:calc(2px + var(--nav-h)); left:0; right:0;
+      background:rgba(3,4,10,.97); backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      padding:16px; z-index:899; flex-direction:column; gap:4px;
+    }
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{
+      padding:14px 16px;
+      font-family:'Share Tech Mono',monospace; font-size:.85rem;
+      letter-spacing:.08em; text-transform:uppercase; color:var(--text-soft);
+      border-left:2px solid transparent;
+    }
+    .mobile-menu a:hover{color:var(--cyan); border-left-color:var(--cyan); background:var(--cyan-dim)}
+
+    .hero{
+      min-height:100vh;
+      display:flex; align-items:center;
+      padding:calc(var(--nav-h) + 42px) 0 64px;
+      position:relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; top:46%; left:50%; transform:translate(-50%,-50%);
+      width:920px; height:920px; border-radius:50%;
+      background:radial-gradient(circle, rgba(0,229,200,.04), transparent 65%);
+      pointer-events:none;
+    }
+    .hero-grid{
+      display:grid; grid-template-columns:1.05fr .95fr; gap:24px; align-items:center;
+    }
+
+    .glitch{position:relative}
+    .glitch::before,.glitch::after{
+      content:attr(data-text);
+      position:absolute; top:0; left:0; width:100%;
+      font-family:'Orbitron',monospace; font-weight:900; font-size:inherit;
+    }
+    .glitch::before{
+      color:var(--mag);
+      animation:glitch-1 5s infinite;
+      clip-path:polygon(0 0,100% 0,100% 40%,0 40%);
+    }
+    .glitch::after{
+      color:var(--cyan);
+      animation:glitch-2 5s infinite;
+      clip-path:polygon(0 60%,100% 60%,100% 100%,0 100%);
+    }
+    @keyframes glitch-1{
+      0%,90%,100%{transform:translate(0);opacity:0}
+      92%{transform:translate(-3px,1px);opacity:.7}
+      94%{transform:translate(3px,-1px);opacity:.7}
+      96%{transform:translate(0);opacity:0}
+    }
+    @keyframes glitch-2{
+      0%,88%,100%{transform:translate(0);opacity:0}
+      90%{transform:translate(3px,2px);opacity:.7}
+      92%{transform:translate(-2px,-1px);opacity:.7}
+      94%{transform:translate(0);opacity:0}
+    }
+
+    .cta-row{display:flex; flex-wrap:wrap; gap:12px; margin:26px 0 16px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      min-height:50px; padding:0 24px;
+      font-family:'Share Tech Mono',monospace;
+      font-size:.82rem; font-weight:700; letter-spacing:.08em;
+      text-transform:uppercase;
+      border:1px solid transparent; cursor:pointer;
+      position:relative; overflow:hidden;
+      transition:transform .2s, box-shadow .2s, background .2s, color .2s;
+      clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    }
+    .btn::before{
+      content:""; position:absolute; top:-100%; left:-100%; width:300%; height:300%;
+      background:linear-gradient(45deg, transparent 40%, rgba(255,255,255,.06) 50%, transparent 60%);
+      transition:top .4s,left .4s;
+    }
+    .btn:hover::before{top:-50%; left:-50%}
+    .btn:active{transform:translateY(1px) scale(.99)}
+    .btn-primary{
+      background:var(--cyan); color:var(--bg); border-color:var(--cyan);
+      box-shadow:0 0 20px rgba(0,229,200,.3);
+    }
+    .btn-primary:hover{background:#fff; box-shadow:0 0 40px rgba(0,229,200,.6); transform:translateY(-2px)}
+    .btn-secondary{
+      background:transparent; color:var(--cyan); border-color:var(--border-strong);
+    }
+    .btn-secondary:hover{background:var(--cyan-dim); border-color:var(--cyan); box-shadow:0 0 20px rgba(0,229,200,.15); transform:translateY(-2px)}
+    .btn-gold{
+      background:var(--gold-dim); color:var(--gold); border-color:rgba(240,192,64,.3);
+    }
+    .btn-gold:hover{background:rgba(240,192,64,.18); border-color:var(--gold); box-shadow:0 0 20px rgba(240,192,64,.2); transform:translateY(-2px)}
+
+    .card{
+      background:linear-gradient(135deg, rgba(0,229,200,.05), rgba(0,0,0,.4));
+      border:1px solid var(--border);
+      padding:28px; position:relative; overflow:hidden;
+      transition:transform .25s, border-color .25s, box-shadow .25s;
+    }
+    .card:hover{transform:translateY(-4px); border-color:var(--border-strong); box-shadow:var(--shadow-cyan)}
+    .card::before{
+      content:""; position:absolute; top:0; left:0; right:0; height:1px;
+      background:linear-gradient(90deg, transparent, var(--cyan), transparent); opacity:.7;
+    }
+    .corner{position:absolute; width:18px; height:18px; border-color:var(--cyan); border-style:solid; opacity:.5}
+    .corner.tl{top:-1px; left:-1px; border-width:2px 0 0 2px}
+    .corner.tr{top:-1px; right:-1px; border-width:2px 2px 0 0}
+    .corner.bl{bottom:-1px; left:-1px; border-width:0 0 2px 2px}
+    .corner.br{bottom:-1px; right:-1px; border-width:0 2px 2px 0}
+
+    .vault-badge{
+      display:inline-flex; align-items:center; gap:10px; padding:7px 14px;
+      background:var(--gold-dim); border:1px solid rgba(240,192,64,.35); color:var(--gold);
+      font-family:'Share Tech Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+      margin-bottom:16px;
+      clip-path:polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+
+    .benefits{
+      display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin:18px 0 20px;
+    }
+    .benefit{
+      padding:12px 14px; background:rgba(0,229,200,.04); border:1px solid var(--border); border-left:2px solid var(--cyan);
+      font-weight:700; font-size:.92rem; color:var(--text);
+    }
+
+    .form-shell{
+      background:rgba(0,0,0,.4); border:1px solid var(--border); padding:14px; margin-top:16px;
+    }
+    .form-shell label{
+      display:block; font-family:'Share Tech Mono',monospace; font-size:11px; letter-spacing:.1em;
+      text-transform:uppercase; color:var(--cyan); margin-bottom:10px;
+    }
+    .field-row{display:grid; grid-template-columns:1fr auto; gap:10px}
+    input[type="email"]{
+      width:100%; min-height:50px;
+      background:rgba(0,229,200,.04); border:1px solid var(--border);
+      color:var(--text); padding:0 16px;
+      font-family:'Share Tech Mono',monospace; font-size:.85rem; outline:none; letter-spacing:.04em;
+      transition:border-color .2s, box-shadow .2s;
+    }
+    input[type="email"]:focus{border-color:var(--cyan); box-shadow:0 0 0 3px rgba(0,229,200,.1)}
+    input[type="email"]::placeholder{color:var(--text-dim)}
+    .status{
+      display:none; margin-top:12px; padding:12px 14px;
+      background:rgba(0,229,200,.08); border:1px solid rgba(0,229,200,.3); color:var(--cyan);
+      font-family:'Share Tech Mono',monospace; font-size:.8rem;
+    }
+    .status.show{display:block}
+
+    .grid-3{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+    .preview-tag{
+      display:inline-block; padding:4px 10px; background:var(--cyan-dim); border:1px solid var(--border-strong);
+      color:var(--cyan); font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:12px;
+    }
+    .fake-audio{
+      display:flex; align-items:center; gap:12px;
+      padding:12px 14px; background:rgba(0,0,0,.4); border:1px solid var(--border); margin-top:14px;
+    }
+    .play-btn{
+      width:34px; height:34px; display:grid; place-items:center; flex:0 0 34px;
+      background:var(--cyan); color:var(--bg); font-size:.75rem;
+      clip-path:polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+      box-shadow:0 0 16px rgba(0,229,200,.35);
+    }
+    .wave{
+      flex:1; height:26px;
+      background:
+        linear-gradient(90deg, var(--cyan) 0%, rgba(0,229,200,.3) 60%, rgba(240,192,64,.18) 100%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.12) 0 3px, transparent 3px 8px);
+      opacity:.85;
+    }
+    .wave-time{
+      font-family:'Share Tech Mono',monospace; font-size:.78rem; color:var(--text-soft); white-space:nowrap;
+    }
+
+    .offer-strip{
+      display:grid; grid-template-columns:1fr auto; gap:20px; align-items:center;
+      background:linear-gradient(135deg, rgba(240,192,64,.08), rgba(255,0,119,.04), rgba(0,0,0,.35));
+      border:1px solid rgba(240,192,64,.22);
+      padding:26px 24px; position:relative; overflow:hidden;
+    }
+    .offer-strip::before{
+      content:""; position:absolute; top:0; left:0; right:0; height:1px;
+      background:linear-gradient(90deg, var(--gold), var(--mag), transparent);
+    }
+
+    .mini-points{
+      display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:22px;
+    }
+    .mini-point{
+      background:rgba(0,229,200,.04); border:1px solid var(--border); border-left:2px solid var(--cyan);
+      padding:16px;
+    }
+    .mini-point strong{
+      display:block; font-family:'Orbitron',monospace; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text); margin-bottom:8px;
+    }
+    .mini-point span{color:var(--text-soft); font-size:.9rem}
+
+    .footer{padding:22px 0 40px}
+    .footer-card{
+      padding:22px 24px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px;
+      background:linear-gradient(135deg, rgba(0,229,200,.04), rgba(0,0,0,.4)); border:1px solid var(--border); position:relative;
+    }
+    .footer-card::before{
+      content:""; position:absolute; top:0; left:0; right:0; height:1px;
+      background:linear-gradient(90deg, var(--cyan), var(--mag), transparent);
+    }
+    .footer-links{display:flex; flex-wrap:wrap; gap:4px}
+    .footer-links a{
+      padding:6px 12px; font-family:'Share Tech Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-soft);
+    }
+    .footer-links a:hover{color:var(--cyan); background:var(--cyan-dim)}
+
+    .reveal{opacity:0; transform:translateY(20px); transition:opacity .5s ease, transform .5s ease}
+    .reveal.visible{opacity:1; transform:none}
+    .reveal-delay-1{transition-delay:.08s}
+    .reveal-delay-2{transition-delay:.16s}
+    .reveal-delay-3{transition-delay:.24s}
+    .reveal-delay-4{transition-delay:.32s}
+
+    #scroll-top{
+      position:fixed; bottom:28px; right:28px; width:44px; height:44px;
+      background:var(--cyan-dim); border:1px solid var(--border-strong); color:var(--cyan);
+      display:grid; place-items:center; cursor:pointer; z-index:800;
+      opacity:0; transform:translateY(10px); transition:opacity .3s, transform .3s;
+      font-family:'Share Tech Mono',monospace;
+      clip-path:polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+    #scroll-top.visible{opacity:1; transform:translateY(0)}
+    #scroll-top:hover{background:rgba(0,229,200,.2)}
+
+    @media (max-width: 1080px){
+      .hero-grid, .grid-3{grid-template-columns:1fr}
+      .mini-points{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .nav-links{display:none}
+      .hamburger{display:flex}
+    }
+    @media (max-width: 680px){
+      .hero{padding:calc(var(--nav-h) + 28px) 0 48px}
+      .benefits, .mini-points{grid-template-columns:1fr}
+      .field-row, .offer-strip{grid-template-columns:1fr}
+      .cta-row{flex-direction:column}
+      .btn{width:100%}
+      #scroll-top{bottom:14px; right:14px}
+    }
+    @media (prefers-reduced-motion: reduce){
+      *,*::before,*::after{animation-duration:.01ms!important; transition-duration:.01ms!important}
+      .reveal{opacity:1; transform:none}
+      .glitch::before,.glitch::after{display:none}
+    }
+  
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--border);background:var(--cyan-dim)}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--cyan);transition:transform .25s,opacity .25s}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{display:none;position:fixed;top:calc(2px + var(--nav-h));left:0;right:0;background:rgba(3,4,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:16px;z-index:899;flex-direction:column;gap:4px}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{padding:14px 16px;font-family:'Share Tech Mono',monospace;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);border-left:2px solid transparent;transition:color .2s,border-color .2s,background .2s}
+    .mobile-menu a:hover,.mobile-menu a.active{color:var(--cyan);border-left-color:var(--cyan);background:var(--cyan-dim)}
+    @media(max-width:980px){.hamburger{display:flex}}
+  </style>
+</head>
+<body>
+  <div id="scroll-progress"></div>
+
+  <div class="nav-sticky" id="stickyNav">
+    <div class="wrap">
+      <nav class="nav">
+        <a class="brand" href="index.html">
+          <div class="brand-mark">NMG</div>
+          <div>
+            <div>Acedawgbeatz</div>
+            <div class="brand-sub">Vault Access / Promo Gate</div>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="index.html">Catalog</a>
+          <a href="packs.html">Packs</a>
+          <a href="openverse.html">Open Verse</a>
+          <a href="sync.html">Sync</a>
+          <a href="index.html" class="nav-cta">→ Full Catalog</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#benefits" class="mobile-link">Benefits</a>
+    <a href="#previews" class="mobile-link">Previews</a>
+    <a href="#capture" class="mobile-link">Capture</a>
+    <a href="index.html" class="mobile-link">→ Full Catalog</a>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="section-id reveal">SYS::LANDING // PROMO GATE</span>
+          <div class="eyebrow reveal reveal-delay-1">Free Beats Vault</div>
+          <h1 class="glitch reveal reveal-delay-2" data-text="Unlock 3 Free Beats">Unlock 3 Free Beats</h1>
+          <p class="lead reveal reveal-delay-3" style="margin-top:16px;">Free beats, exclusive drops, early beat pack access, and a faster path into the Acedawgbeatz catalog.</p>
+
+          <div class="cta-row reveal reveal-delay-4">
+            <a class="btn btn-primary" href="#capture">⚡ Unlock the Vault</a>
+            <a class="btn btn-secondary" href="#previews">// Hear the Sound</a>
+            <a class="btn btn-gold" href="index.html">→ Enter Full Catalog</a>
+          </div>
+
+          <div class="mini-points reveal reveal-delay-4">
+            <div class="mini-point">
+              <strong>3 Free Beats</strong>
+              <span>Instant value for writing, demos, and first contact.</span>
+            </div>
+            <div class="mini-point">
+              <strong>Early Drops</strong>
+              <span>New heat lands here before the main storefront.</span>
+            </div>
+            <div class="mini-point">
+              <strong>Artist-Ready</strong>
+              <span>Emotion-first production with replay value.</span>
+            </div>
+            <div class="mini-point">
+              <strong>Fast Funnel</strong>
+              <span>Capture → thanks → catalog → BeatStars.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal reveal-delay-2" id="capture">
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <div class="vault-badge">🏛 Private Vault Access</div>
+          <h3>Join the Vault</h3>
+          <p style="margin-top:10px;">Get 3 free beats instantly, plus access to exclusive drop alerts and your 5-for-$25 bundle offer.</p>
+
+          <div class="benefits" id="benefits">
+            <div class="benefit">🎁 3 Free Beats</div>
+            <div class="benefit">💸 5 for $25 Offer</div>
+            <div class="benefit">🎤 Open Verse Alerts</div>
+            <div class="benefit">⚡ Early Catalog Drops</div>
+          </div>
+
+          <form class="form-shell" action="thanks.html" method="get">
+            <label for="email">// Enter Access Code (Email)</label>
+            <div class="field-row">
+              <input id="email" name="email" type="email" placeholder="artist@email.com" required autocomplete="email">
+              <button class="btn btn-primary" type="submit">Unlock</button>
+            </div>
+            <div class="status" id="statusBox">VAULT_UNLOCKED :: Connect this form to MailerLite or Kit for live capture.</div>
+          </form>
+
+          <p class="mono" style="margin-top:12px; font-size:10px;">NO SPAM. JUST SOUND. REDIRECT → THANKS → FULL CATALOG.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:24px;">
+    <div class="offer-strip reveal">
+      <div>
+        <span class="section-id">SYS::OFFER // TRIPWIRE</span>
+        <h3 style="color:var(--gold); margin-bottom:8px;">5 Beats for $25</h3>
+        <p style="margin:0;">A clean producer-choice bundle for artists who want to move immediately after claiming the free pack.</p>
+      </div>
+      <div>
+        <a class="btn btn-primary" href="index_2.html">⚡ View Vault Offer</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding:32px 0 72px;" id="previews">
+    <span class="section-id reveal">SYS::PREVIEW // SOUND CHECK</span>
+    <div class="eyebrow reveal reveal-delay-1">Quick Previews</div>
+    <h2 class="reveal reveal-delay-2" style="margin-top:16px;">Press play. Feel it.</h2>
+    <p class="reveal reveal-delay-3">Use these as placeholders for your strongest 10–15 second beat previews or drop in your embedded player later.</p>
+
+    <div class="grid-3" style="margin-top:24px;">
+      <div class="card reveal reveal-delay-1">
+        <div class="preview-tag">Late Night Soul</div>
+        <h3>Midnight Ember</h3>
+        <p>Warm Rhodes. Deep pocket. Emotional storytelling.</p>
+        <div class="fake-audio">
+          <div class="play-btn">▶</div>
+          <div class="wave"></div>
+          <div class="wave-time">0:15</div>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-delay-2">
+        <div class="preview-tag">Trap Soul</div>
+        <h3>Velvet Damage</h3>
+        <p>Melodic 808s. Dark bounce. Pain-driven hooks.</p>
+        <div class="fake-audio">
+          <div class="play-btn">▶</div>
+          <div class="wave"></div>
+          <div class="wave-time">0:15</div>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-delay-3">
+        <div class="preview-tag">Cinematic Soul</div>
+        <h3>Hallway Confessions</h3>
+        <p>Atmospheric cues with sync-ready emotion and space.</p>
+        <div class="fake-audio">
+          <div class="play-btn">▶</div>
+          <div class="wave"></div>
+          <div class="wave-time">0:15</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-card">
+        <div>
+          <strong style="font-family:'Orbitron',monospace;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;">Acedawgbeatz</strong><br>
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim)">© 2026 // A Neural Music Group Production</span>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Catalog</a>
+          <a href="vault.html">Vault</a>
+          <a href="packs.html">Packs</a>
+          <a href="openverse.html">Open Verse</a>
+          <a href="sync.html">Sync</a>
+          <a href="bio.html">Bio</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <script>
+    const progressBar = document.getElementById('scroll-progress');
+    const stickyNav = document.getElementById('stickyNav');
+    const scrollTopBtn = document.getElementById('scroll-top');
+
+    function onScroll(){
+      const y = window.scrollY;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (docH > 0 ? (y / docH) * 100 : 0) + '%';
+      stickyNav.classList.toggle('scrolled', y > 20);
+      scrollTopBtn.classList.toggle('visible', y > 300);
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+
+    scrollTopBtn.addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
+
+    const revealObs = new IntersectionObserver((entries)=>{
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, {threshold:.07, rootMargin:'0px 0px -28px 0px'});
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', ()=>{
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    document.querySelectorAll('.mobile-link').forEach(link=>{
+      link.addEventListener('click', ()=>{
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+      });
+    });
+  </script>
+</body>
+</html>

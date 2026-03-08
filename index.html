@@ -1175,7 +1175,10 @@
     .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
     .hamburger.open span:nth-child(2){opacity:0}
     .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
+    .mobile-menu{display:none;position:fixed;top:calc(2px + var(--nav-h));left:0;right:0;background:rgba(3,4,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:16px;z-index:899;flex-direction:column;gap:4px}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{padding:14px 16px;font-family:'Share Tech Mono',monospace;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);border-left:2px solid transparent;transition:color .2s,border-color .2s,background .2s}
+    .mobile-menu a:hover,.mobile-menu a.active{color:var(--cyan);border-left-color:var(--cyan);background:var(--cyan-dim)}
     @media(max-width:980px){.hamburger{display:flex}}
   </style>
 </head>
@@ -1247,16 +1250,25 @@
       </nav>
     </div>
   </div>
-  <div class="mobile-menu" id="mobileMenu" role="navigation">
-    <a href="index.html" class="mobile-link active">Catalog</a>
-    <a href="vault.html" class="mobile-link">Vault 🔓</a>
-    <a href="packs.html" class="mobile-link">Packs</a>
-    <a href="openverse.html" class="mobile-link">Open Verse</a>
-    <a href="sync.html" class="mobile-link">Sync</a>
-    <a href="bio.html" class="mobile-link">Bio</a>
-    <a href="contact.html" class="mobile-link">Contact</a>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="active">Catalog</a>
+    <a href="vault.html">Vault 🔓</a>
+    <a href="packs.html">Packs</a>
+    <a href="openverse.html">Open Verse</a>
+    <a href="sync.html">Sync</a>
+    <a href="bio.html">Bio</a>
+    <a href="contact.html">Contact</a>
   </div>
 
+  <!-- ── MOBILE MENU ── -->
+  <div class="mobile-menu" id="mobileMenu" role="navigation">
+    <a href="#intro" class="mobile-link">Brand</a>
+    <a href="#sound" class="mobile-link">Sound</a>
+    <a href="#packs" class="mobile-link">Packs</a>
+    <a href="#who" class="mobile-link">Target</a>
+    <a href="#links" class="mobile-link">Links</a>
+    <a href="#capture" class="mobile-link">⚡ Get 3 Free Beats</a>
+  </div>
 
   <!-- ══════════════════════════════════════
        HERO
@@ -1649,8 +1661,8 @@
   <button id="scroll-top" aria-label="Scroll to top">↑</button>
 
   <script>
-    const HOMEPAGE_URL        = "https://acedawgbeatz.com/home";
-    const THANK_YOU_URL       = "https://acedawgbeatz.com/thank-you";
+    const HOMEPAGE_URL        = "https://neuralmusicgrp.github.io/acedawgbeatz/";
+    const THANK_YOU_URL       = "https://neuralmusicgrp.github.io/acedawgbeatz/thanks.html";
     const AUTO_REDIRECT_MS    = 120000;
     const POST_SUBMIT_REDIRECT_MS = 3500;
 
@@ -1710,13 +1722,13 @@
         statusBox.classList.add('show');
         statusBox.innerHTML = 'VAULT_UNLOCKED :: In a live build, submit to your email platform, then redirect to your thank-you page.';
         setTimeout(() => {
-          if (THANK_YOU_URL.includes('acedawgbeatz.com')) window.location.href = THANK_YOU_URL;
+          window.location.href = THANK_YOU_URL;
         }, POST_SUBMIT_REDIRECT_MS);
       }, 1400);
     });
 
     setTimeout(() => {
-      if (!statusBox.classList.contains('show') && HOMEPAGE_URL.includes('acedawgbeatz.com'))
+      if (!statusBox.classList.contains('show'))
         window.location.href = HOMEPAGE_URL;
     }, AUTO_REDIRECT_MS);
   </script>

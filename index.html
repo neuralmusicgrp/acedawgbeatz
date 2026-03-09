@@ -1169,6 +1169,17 @@
       .ticker-track { animation: none; }
       .glitch::before, .glitch::after { display: none; }
     }
+  
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--border);background:var(--cyan-dim)}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--cyan);transition:transform .25s,opacity .25s}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{display:none;position:fixed;top:calc(2px + var(--nav-h));left:0;right:0;background:rgba(3,4,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:16px;z-index:899;flex-direction:column;gap:4px}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{padding:14px 16px;font-family:'Share Tech Mono',monospace;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);border-left:2px solid transparent;transition:color .2s,border-color .2s,background .2s}
+    .mobile-menu a:hover,.mobile-menu a.active{color:var(--cyan);border-left-color:var(--cyan);background:var(--cyan-dim)}
+    @media(max-width:980px){.hamburger{display:flex}}
   </style>
   <!-- MailerLite Universal -->
   <script>
@@ -1234,18 +1245,28 @@
           </div>
         </a>
         <div class="nav-links" id="navLinks">
-          <a href="#intro">Brand</a>
-          <a href="#sound">Sound</a>
-          <a href="#packs">Packs</a>
-          <a href="#who">Target</a>
-          <a href="#links">Links</a>
-          <a href="#capture" class="nav-cta">⚡ Free Beats</a>
+          <a href="index.html" class="active">Catalog</a>
+          <a href="vault.html">Vault 🔓</a>
+          <a href="packs.html">Packs</a>
+          <a href="openverse.html">Open Verse</a>
+          <a href="sync.html">Sync</a>
+          <a href="bio.html">Bio</a>
+          <a href="contact.html" class="nav-cta">Contact</a>
         </div>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </nav>
     </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="active">Catalog</a>
+    <a href="vault.html">Vault 🔓</a>
+    <a href="packs.html">Packs</a>
+    <a href="openverse.html">Open Verse</a>
+    <a href="sync.html">Sync</a>
+    <a href="bio.html">Bio</a>
+    <a href="contact.html">Contact</a>
   </div>
 
   <!-- ── MOBILE MENU ── -->
@@ -1302,17 +1323,16 @@
             <div class="benefit">⚡ Early Beat Drops</div>
           </div>
 
-          <form class="form-shell" id="vaultForm">
+          <form class="form-shell" id="vaultForm" onsubmit="event.preventDefault(); ml('show', '4nVDsF', true);">
             <label for="email">// Enter Access Code (Email)</label>
             <div class="field-row">
-              <input id="email" name="email" type="email" placeholder="artist@email.com" autocomplete="email" required />
+              <input id="email" name="email" type="email" placeholder="artist@email.com" autocomplete="email" />
               <button class="btn btn-primary" type="submit" id="submitBtn">
                 <span class="btn-text">⚡ Unlock</span>
               </button>
             </div>
-            <div class="status" id="statusBox"></div>
           </form>
-          <p class="mono" style="margin-top:12px; font-size:10px;">NO SPAM. JUST SOUND. UNSUBSCRIBE ANYTIME.</p>
+          <p class="mono" style="margin-top:12px; font-size:10px;">NO SPAM. JUST SOUND. REDIRECT → THANK-YOU → BEATSTARS</p>
         </div>
       </div>
     </div>
@@ -1422,35 +1442,35 @@
           <h3>Warm Rhodes. Deep pockets. Emotional storytelling.</h3>
           <p>A soulful collection built for intimate writing sessions, smooth vocal records, and grown, reflective energy.</p>
           <ul class="mini-list"><li>5 beats</li><li>15-second clips</li><li>No-drums sync alts</li></ul>
-          <a class="btn btn-secondary" href="https://www.beatstars.com/acedawgbeatz"><span class="btn-text">Shop Pack</span><div class="spinner"></div></a>
+          <a class="btn btn-secondary" href="#"><span class="btn-text">Shop Pack</span><div class="spinner"></div></a>
         </div>
         <div class="pack-card reveal reveal-delay-2">
           <span class="pack-class">🎹 Trap Soul Confessions</span>
           <h3>Melodic 808s. Pain-driven hooks. Dark bounce.</h3>
           <p>For artists who want confession, tension, melody, and late-night emotion over modern drums.</p>
           <ul class="mini-list"><li>Vocal-ready arrangements</li><li>Open verse options</li><li>Bundle-friendly pricing</li></ul>
-          <a class="btn btn-secondary" href="https://www.beatstars.com/acedawgbeatz"><span class="btn-text">Shop Pack</span><div class="spinner"></div></a>
+          <a class="btn btn-secondary" href="#"><span class="btn-text">Shop Pack</span><div class="spinner"></div></a>
         </div>
         <div class="pack-card reveal reveal-delay-3">
           <span class="pack-class">🌑 Dark Velvet R&amp;B</span>
           <h3>Minimal drums. Atmospheric textures. After-hours mood.</h3>
           <p>Moody, sensual, sparse, and cinematic — designed for slow-burn records and luxury darkness.</p>
           <ul class="mini-list"><li>Slow-burn tension</li><li>Rich texture layers</li><li>Premium cover look</li></ul>
-          <a class="btn btn-secondary" href="https://www.beatstars.com/acedawgbeatz"><span class="btn-text">Shop Pack</span><div class="spinner"></div></a>
+          <a class="btn btn-secondary" href="#"><span class="btn-text">Shop Pack</span><div class="spinner"></div></a>
         </div>
         <div class="pack-card reveal reveal-delay-1">
           <span class="pack-class">🌍 Afro-Soul Nights</span>
           <h3>Organic percussion. Warm chords. Cinematic groove.</h3>
           <p>Afro-fusion and Afro-soul textures with emotional movement, rhythmic sway, and melodic warmth.</p>
           <ul class="mini-list"><li>Warm percussion pocket</li><li>Global bounce without clutter</li><li>Soft conversational musicality</li></ul>
-          <a class="btn btn-secondary" href="https://www.beatstars.com/acedawgbeatz"><span class="btn-text">Shop Pack</span><div class="spinner"></div></a>
+          <a class="btn btn-secondary" href="#"><span class="btn-text">Shop Pack</span><div class="spinner"></div></a>
         </div>
         <div class="pack-card reveal reveal-delay-2">
           <span class="pack-class">🎬 Cinematic Soul Cues</span>
           <h3>Sync-ready instrumentals for film, trailers &amp; brand storytelling.</h3>
           <p>Atmospheric, emotional, visual music built for scenes, stories, edits, and placements.</p>
           <ul class="mini-list"><li>No-drums alt versions</li><li>30s and 60s cutdowns</li><li>Metadata-ready positioning</li></ul>
-          <a class="btn btn-secondary" href="https://www.beatstars.com/acedawgbeatz"><span class="btn-text">Shop Pack</span><div class="spinner"></div></a>
+          <a class="btn btn-secondary" href="#"><span class="btn-text">Shop Pack</span><div class="spinner"></div></a>
         </div>
         <div class="pack-card reveal reveal-delay-3">
           <span class="pack-class">🎤 Open Verse Sessions Vol. 1</span>
@@ -1462,20 +1482,20 @@
           <span class="pack-class">🎉 Club Certified Vol. 1</span>
           <h3>Bounce. Motion. Energy. Crowd-ready rhythm.</h3>
           <p>A high-energy lane built for club feel, movement, viral content, party edits, and records that hit harder in real time.</p>
-          <a class="btn btn-secondary" href="https://www.beatstars.com/acedawgbeatz"><span class="btn-text">Shop Pack</span><div class="spinner"></div></a>
+          <a class="btn btn-secondary" href="#"><span class="btn-text">Shop Pack</span><div class="spinner"></div></a>
         </div>
         <div class="pack-card reveal reveal-delay-2">
           <span class="pack-class">❄️ Seasonal Soul Vol. 1</span>
           <h3>Holiday warmth. Romantic atmosphere. Timeless replay value.</h3>
           <p>Seasonal and themed music with soulful emotion — ideal for holiday releases, winter vibes, Valentine energy, and recurring yearly catalog plays.</p>
-          <a class="btn btn-secondary" href="https://www.beatstars.com/acedawgbeatz"><span class="btn-text">Shop Pack</span><div class="spinner"></div></a>
+          <a class="btn btn-secondary" href="#"><span class="btn-text">Shop Pack</span><div class="spinner"></div></a>
         </div>
         <div class="pack-card bundle-card reveal reveal-delay-3">
           <span class="pack-class">⚡ Quick Bundle — Limited Offer</span>
           <h3>5 Beats for $25</h3>
           <p>The tripwire offer that catches heat fast after the free download lands. Choose any 5 from the vault.</p>
           <ul class="mini-list"><li>Choose any 5 from the vault</li><li>Instant license delivery</li><li>Perfect for singles and TikTok drops</li></ul>
-          <a class="btn btn-primary" href="https://www.beatstars.com/acedawgbeatz"><span class="btn-text">⚡ Grab the Bundle</span><div class="spinner"></div></a>
+          <a class="btn btn-primary" href="#"><span class="btn-text">⚡ Grab the Bundle</span><div class="spinner"></div></a>
         </div>
       </div>
 
@@ -1485,7 +1505,7 @@
           <span class="pack-class">🔁 Signature Loop Packs</span>
           <h3>Melodic textures, chord emotion, rhythmic pockets, and producer-ready inspiration.</h3>
           <p>Curated loop and texture packs for producers who want premium musical ideas they can flip into full records.</p>
-          <a class="btn btn-primary" href="https://www.beatstars.com/acedawgbeatz"><span class="btn-text">Browse Loop Packs</span><div class="spinner"></div></a>
+          <a class="btn btn-primary" href="#"><span class="btn-text">Browse Loop Packs</span><div class="spinner"></div></a>
         </div>
       </div>
     </div>
@@ -1544,7 +1564,7 @@
           <h3>Custom Sound Design</h3>
           <p>Need something original? I create custom exclusive beats, full project sound design, podcast intros, and commercial or trailer cues. Built from scratch. No templates. No recycled energy.</p>
           <div class="cta-row">
-            <a class="btn btn-secondary" href="contact.html"><span class="btn-text">📩 Request Custom Work</span><div class="spinner"></div></a>
+            <a class="btn btn-secondary" href="#"><span class="btn-text">📩 Request Custom Work</span><div class="spinner"></div></a>
           </div>
         </div>
       </div>
@@ -1583,13 +1603,13 @@
       <h2 class="reveal reveal-delay-2" style="margin-top:16px;">One clean action grid</h2>
       <p class="reveal reveal-delay-3">Use these as your main storefront buttons on the page. Replace placeholder links with your real destinations.</p>
       <div class="link-grid">
-        <a class="link-card reveal reveal-delay-1" href="https://www.beatstars.com/acedawgbeatz"><span>🎧 Shop Beat Packs</span><span class="arrow">→</span></a>
-        <a class="link-card reveal reveal-delay-2" href="https://www.beatstars.com/acedawgbeatz"><span>🔥 Browse BeatStars</span><span class="arrow">→</span></a>
+        <a class="link-card reveal reveal-delay-1" href="#"><span>🎧 Shop Beat Packs</span><span class="arrow">→</span></a>
+        <a class="link-card reveal reveal-delay-2" href="#"><span>🔥 Browse BeatStars</span><span class="arrow">→</span></a>
         <a class="link-card reveal reveal-delay-3" href="openverse.html"><span>🎤 Open Verse Sessions</span><span class="arrow">→</span></a>
-        <a class="link-card reveal reveal-delay-1" href="sync.html"><span>🎬 Sync &amp; Cinematic Cues</span><span class="arrow">→</span></a>
-        <a class="link-card reveal reveal-delay-2" href="https://www.beatstars.com/acedawgbeatz"><span>🔁 Loop Packs</span><span class="arrow">→</span></a>
+        <a class="link-card reveal reveal-delay-1" href="#"><span>🎬 Sync &amp; Cinematic Cues</span><span class="arrow">→</span></a>
+        <a class="link-card reveal reveal-delay-2" href="#"><span>🔁 Loop Packs</span><span class="arrow">→</span></a>
         <a class="link-card reveal reveal-delay-3" href="#capture"><span>💌 Join the Email List</span><span class="arrow">→</span></a>
-        <a class="link-card reveal reveal-delay-1" href="contact.html"><span>📩 Request Custom Production</span><span class="arrow">→</span></a>
+        <a class="link-card reveal reveal-delay-1" href="#"><span>📩 Request Custom Production</span><span class="arrow">→</span></a>
       </div>
     </div>
   </section>
@@ -1629,17 +1649,18 @@
     <div class="wrap">
       <div class="footer-card">
         <div>
-          <strong style="font-family:'Orbitron',monospace; font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase;">Acedawgbeatz</strong><br>
-          <span class="mono" style="font-size:10px;">Soul. Bounce. Atmosphere. Catalog.</span>
+          <strong style="font-family:'Orbitron',monospace;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;">Acedawgbeatz</strong><br>
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim)">Catalog storefront — Beats · Loops · Sync · Artist Discovery</span>
         </div>
         <div class="footer-links">
-          <a href="https://www.instagram.com/acedawgbeatz/" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://www.tiktok.com/@acedawgbeatz_" target="_blank" rel="noopener">TikTok</a>
-          <a href="https://www.youtube.com/@acedawgbeatz-nmg" target="_blank" rel="noopener">YouTube</a>
+          <a href="index.html">Catalog</a>
+          <a href="vault.html">Vault</a>
+          <a href="packs.html">Packs</a>
           <a href="openverse.html">Open Verse</a>
-          <a href="https://www.beatstars.com/acedawgbeatz">BeatStars</a>
+          <a href="sync.html">Sync</a>
+          <a href="bio.html">Bio</a>
+          <a href="contact.html">Contact</a>
         </div>
-        <div class="mono" style="font-size:10px; color: var(--text-dim);">© 2026 // ALL RIGHTS RESERVED</div>
       </div>
     </div>
   </footer>
@@ -1696,49 +1717,27 @@
       hamburger.setAttribute('aria-expanded', false);
     }));
 
-    // Email capture — post to MailerLite, redirect to thanks
-    (function() {
-      var form      = document.getElementById('vaultForm');
-      var statusBox = document.getElementById('statusBox');
-      var submitBtn = document.getElementById('submitBtn');
+    const form      = document.getElementById('vaultForm');
+    const statusBox = document.getElementById('statusBox');
+    const submitBtn = document.getElementById('submitBtn');
 
-      if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      submitBtn.classList.add('loading');
+      setTimeout(() => {
+        submitBtn.classList.remove('loading');
+        statusBox.classList.add('show');
+        statusBox.innerHTML = 'VAULT_UNLOCKED :: In a live build, submit to your email platform, then redirect to your thank-you page.';
+        setTimeout(() => {
+          window.location.href = THANK_YOU_URL;
+        }, POST_SUBMIT_REDIRECT_MS);
+      }, 1400);
+    });
 
-      form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        var email = document.getElementById('email').value.trim();
-        if (!email) return;
-
-        submitBtn.disabled = true;
-        submitBtn.querySelector('.btn-text').textContent = 'Unlocking...';
-
-        try {
-          var body = new FormData();
-          body.append('fields[email]', email);
-          body.append('ml-submit', '1');
-          body.append('anticsrf', 'true');
-
-          var res = await fetch(
-            'https://assets.mailerlite.com/jsonp/1966744/forms/181424961082098712/subscribe',
-            { method: 'POST', body: body, headers: { 'Accept': 'application/json' } }
-          );
-
-          var data = await res.json();
-
-          if (data.success || res.ok) {
-            window.location.href = 'thanks.html';
-          } else {
-            statusBox.textContent = 'Something went wrong. Try again.';
-            statusBox.classList.add('show');
-            submitBtn.disabled = false;
-            submitBtn.querySelector('.btn-text').textContent = '⚡ Unlock';
-          }
-        } catch(err) {
-          // Redirect anyway — MailerLite CORS may block response but submission goes through
-          window.location.href = 'thanks.html';
-        }
-      });
-    })();
+    setTimeout(() => {
+      if (!statusBox.classList.contains('show'))
+        window.location.href = HOMEPAGE_URL;
+    }, AUTO_REDIRECT_MS);
   </script>
 </body>
 </html>

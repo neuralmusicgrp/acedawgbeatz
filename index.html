@@ -1302,16 +1302,7 @@
             <div class="benefit">⚡ Early Beat Drops</div>
           </div>
 
-          <form class="form-shell" id="vaultForm">
-            <label for="email">// Enter Access Code (Email)</label>
-            <div class="field-row">
-              <input id="email" name="email" type="email" placeholder="artist@email.com" autocomplete="email" required />
-              <button class="btn btn-primary" type="submit" id="submitBtn">
-                <span class="btn-text">⚡ Unlock</span>
-              </button>
-            </div>
-            <div class="status" id="statusBox"></div>
-          </form>
+          <div class="ml-embedded" data-form="4nVDsF"></div>
           <p class="mono" style="margin-top:12px; font-size:10px;">NO SPAM. JUST SOUND. UNSUBSCRIBE ANYTIME.</p>
         </div>
       </div>
@@ -1696,49 +1687,7 @@
       hamburger.setAttribute('aria-expanded', false);
     }));
 
-    // Email capture — post to MailerLite, redirect to thanks
-    (function() {
-      var form      = document.getElementById('vaultForm');
-      var statusBox = document.getElementById('statusBox');
-      var submitBtn = document.getElementById('submitBtn');
-
-      if (!form) return;
-
-      form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        var email = document.getElementById('email').value.trim();
-        if (!email) return;
-
-        submitBtn.disabled = true;
-        submitBtn.querySelector('.btn-text').textContent = 'Unlocking...';
-
-        try {
-          var body = new FormData();
-          body.append('fields[email]', email);
-          body.append('ml-submit', '1');
-          body.append('anticsrf', 'true');
-
-          var res = await fetch(
-            'https://assets.mailerlite.com/jsonp/1966744/forms/181424961082098712/subscribe',
-            { method: 'POST', body: body, headers: { 'Accept': 'application/json' } }
-          );
-
-          var data = await res.json();
-
-          if (data.success || res.ok) {
-            window.location.href = 'thanks.html';
-          } else {
-            statusBox.textContent = 'Something went wrong. Try again.';
-            statusBox.classList.add('show');
-            submitBtn.disabled = false;
-            submitBtn.querySelector('.btn-text').textContent = '⚡ Unlock';
-          }
-        } catch(err) {
-          // Redirect anyway — MailerLite CORS may block response but submission goes through
-          window.location.href = 'thanks.html';
-        }
-      });
-    })();
+    // Email capture handled by MailerLite embedded form
   </script>
 </body>
 </html>

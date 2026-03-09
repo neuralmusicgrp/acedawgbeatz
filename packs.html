@@ -14,6 +14,15 @@
   <script>
     addEventListener('scroll',()=>document.getElementById('sticky').classList.toggle('scrolled',scrollY>20));
   </script>
+  <!-- MailerLite Universal -->
+  <script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},
+    l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],
+    n.parentNode.insertBefore(l,n);})(window,document,'script',
+    'https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '1966744');
+  </script>
+  <!-- End MailerLite Universal -->
 </head>
 <body>
   <div class="nav-sticky" id="sticky">
@@ -85,7 +94,7 @@
         <a class="link-card" href="sync.html"><span>🎬 Sync & Cinematic</span><span>→</span></a>
         <a class="link-card" href="bio.html"><span>📖 Producer Bio</span><span>→</span></a>
         <a class="link-card" href="contact.html"><span>📩 Contact / Custom</span><span>→</span></a>
-        <a class="link-card" href="landing_page.html"><span>⚡ Free Beats Vault</span><span>→</span></a>
+        <a class="link-card" href="javascript:void(0)" onclick="ml('show', '4nVDsF', true)""><span>⚡ Free Beats Vault</span><span>→</span></a>
       </div>
     </div>
   </section>
@@ -95,7 +104,7 @@
       <div class="hud-highlight">
         <h2>Need a custom pack strategy?</h2>
         <p style="margin-top:12px;max-width:60ch;">Looking for soulful, dark, Afro-fusion, cinematic, club-ready, seasonal, or open verse production? Use the contact page and request the exact sound you need.</p>
-        <div class="cta-row"><a class="btn btn-primary" href="contact.html">Request Custom Production</a><a class="btn btn-secondary" href="landing_page.html">Join Email List</a></div>
+        <div class="cta-row"><a class="btn btn-primary" href="contact.html">Request Custom Production</a><a class="btn btn-secondary" href="javascript:void(0)" onclick="ml('show', '4nVDsF', true)"">Join Email List</a></div>
       </div>
     </div>
   </section>

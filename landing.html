@@ -543,16 +543,37 @@
             <div class="benefit">⚡ Early Catalog Drops</div>
           </div>
 
-          <form class="form-shell" action="thanks.html" method="get">
-            <label for="email">// Enter Access Code (Email)</label>
-            <div class="field-row">
-              <input id="email" name="email" type="email" placeholder="artist@email.com" required autocomplete="email">
-              <button class="btn btn-primary" type="submit">Unlock</button>
+          <div id="landingCapture">
+            <div id="landingFormWrap">
+              <label for="lcEmail">// Enter Access Code (Email)</label>
+              <div class="field-row">
+                <input id="lcEmail" type="email" placeholder="artist@email.com" autocomplete="email" required>
+                <button class="btn btn-primary" id="lcSubmit" type="button">⚡ Unlock</button>
+              </div>
+              <div id="lcStatus"></div>
             </div>
-            <div class="status" id="statusBox">VAULT_UNLOCKED :: Connect this form to MailerLite or Kit for live capture.</div>
-          </form>
+          </div>
+          <script>
+            document.getElementById('lcSubmit').addEventListener('click', async function() {
+              var email = document.getElementById('lcEmail').value.trim();
+              var status = document.getElementById('lcStatus');
+              if (!email) { status.textContent = 'Email required.'; status.style.color='#FF0077'; return; }
+              this.textContent = 'Unlocking...';
+              this.disabled = true;
+              var body = new FormData();
+              body.append('fields[email]', email);
+              body.append('ml-submit', '1');
+              body.append('anticsrf', 'true');
+              try {
+                await fetch('https://assets.mailerlite.com/jsonp/1966744/forms/181424961082098712/subscribe', {
+                  method: 'POST', body: body
+                });
+              } catch(e) {}
+              window.location.href = 'thanks.html';
+            });
+          </script>
 
-          <p class="mono" style="margin-top:12px; font-size:10px;">NO SPAM. JUST SOUND. REDIRECT → THANKS → FULL CATALOG.</p>
+          <p class="mono" style="margin-top:12px; font-size:10px;">NO SPAM. JUST SOUND. UNSUBSCRIBE ANYTIME.</p>
         </div>
       </div>
     </div>

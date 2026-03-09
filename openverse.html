@@ -337,17 +337,6 @@
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
       .reveal { opacity: 1; transform: none; }
     }
-  
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--border);background:var(--cyan-dim)}
-    .hamburger span{display:block;width:22px;height:2px;background:var(--cyan);transition:transform .25s,opacity .25s}
-    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-    .hamburger.open span:nth-child(2){opacity:0}
-    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-    .mobile-menu{display:none;position:fixed;top:calc(2px + var(--nav-h));left:0;right:0;background:rgba(3,4,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:16px;z-index:899;flex-direction:column;gap:4px}
-    .mobile-menu.open{display:flex}
-    .mobile-menu a{padding:14px 16px;font-family:'Share Tech Mono',monospace;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);border-left:2px solid transparent;transition:color .2s,border-color .2s,background .2s}
-    .mobile-menu a:hover,.mobile-menu a.active{color:var(--cyan);border-left-color:var(--cyan);background:var(--cyan-dim)}
-    @media(max-width:980px){.hamburger{display:flex}}
   </style>
 </head>
 <body>
@@ -358,21 +347,18 @@
   <div class="nav-sticky" id="stickyNav">
     <div class="wrap">
       <nav class="nav">
-        <a class="brand" href="index.html">
+        <a class="brand" href="index_generated.html">
           <div class="brand-mark">NMG</div>
           <div>
             <div>Acedawgbeatz</div>
             <div class="brand-sub">Sound Designer — Neural Music Group</div>
           </div>
         </a>
-        <div class="nav-links" id="navLinks">
-          <a href="index.html">Catalog</a>
-          <a href="vault.html">Vault 🔓</a>
-          <a href="packs.html">Packs</a>
-          <a href="openverse.html" class="active">Open Verse</a>
-          <a href="sync.html">Sync</a>
-          <a href="bio.html">Bio</a>
-          <a href="contact.html" class="nav-cta">Contact</a>
+        <div class="nav-links">
+          <a href="index_generated.html">Catalog</a>
+          <a href="#beats" class="active">Open Verse</a>
+          <a href="#how">How It Works</a>
+          <a href="index_generated.html#capture" class="nav-cta">⚡ Free Beats</a>
         </div>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -380,21 +366,12 @@
       </nav>
     </div>
   </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Catalog</a>
-    <a href="vault.html">Vault 🔓</a>
-    <a href="packs.html">Packs</a>
-    <a href="openverse.html" class="active">Open Verse</a>
-    <a href="sync.html">Sync</a>
-    <a href="bio.html">Bio</a>
-    <a href="contact.html">Contact</a>
-  </div>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html" class="mobile-link">Catalog</a>
+    <a href="index_generated.html" class="mobile-link">Catalog</a>
     <a href="#beats" class="mobile-link">Open Verse</a>
     <a href="#how" class="mobile-link">How It Works</a>
-    <a href="index.html#capture" class="mobile-link">⚡ Get 3 Free Beats</a>
+    <a href="index_generated.html#capture" class="mobile-link">⚡ Get 3 Free Beats</a>
   </div>
 
   <!-- ══ HERO ══ -->
@@ -405,8 +382,8 @@
       <h1 class="reveal reveal-delay-2" style="margin-top: 18px; max-width: 14ch; margin-left: auto; margin-right: auto;">Open Verse Sessions</h1>
       <p class="lead reveal reveal-delay-3" style="margin: 18px auto 0; text-align: center;">Hook-ready records built for artists, creators, and collaborative content. Jump on the beat, record your verse, and share your performance.</p>
       <div class="cta-row reveal reveal-delay-4">
-        <a class="btn btn-primary" href="https://beatstars.com">⚡ Browse Open Verse Beats</a>
-        <a class="btn btn-secondary" href="index.html">// Back to Catalog</a>
+        <a class="btn btn-primary" href="https://www.beatstars.com/acedawgbeatz">⚡ Browse Open Verse Beats</a>
+        <a class="btn btn-secondary" href="index_generated.html">// Back to Catalog</a>
       </div>
     </div>
   </div>
@@ -424,7 +401,7 @@
           <div class="beat-tag">Trap Soul</div>
           <h3>Late Night Confession</h3>
           <p>Trap soul emotion with space for melodic verses.</p>
-          <a class="btn btn-secondary" href="#">→ Listen</a>
+          <a class="btn btn-secondary" href="https://www.beatstars.com/acedawgbeatz">→ Listen</a>
         </div>
 
         <div class="beat-card reveal reveal-delay-2">
@@ -432,7 +409,7 @@
           <div class="beat-tag">Afro-Soul</div>
           <h3>No Rush Tonight</h3>
           <p>Afro-soul groove with smooth late-night energy.</p>
-          <a class="btn btn-secondary" href="#">→ Listen</a>
+          <a class="btn btn-secondary" href="https://www.beatstars.com/acedawgbeatz">→ Listen</a>
         </div>
 
         <div class="beat-card reveal reveal-delay-3">
@@ -440,7 +417,7 @@
           <div class="beat-tag">Dark R&B</div>
           <h3>Velvet After Dark</h3>
           <p>Minimal R&B atmosphere built for sensual records.</p>
-          <a class="btn btn-secondary" href="#">→ Listen</a>
+          <a class="btn btn-secondary" href="https://www.beatstars.com/acedawgbeatz">→ Listen</a>
         </div>
 
         <div class="beat-card reveal reveal-delay-4">
@@ -448,7 +425,7 @@
           <div class="beat-tag">Melodic Trap</div>
           <h3>Broken Halo</h3>
           <p>Dark melodic trap with emotional space.</p>
-          <a class="btn btn-secondary" href="#">→ Listen</a>
+          <a class="btn btn-secondary" href="https://www.beatstars.com/acedawgbeatz">→ Listen</a>
         </div>
 
       </div>
@@ -508,8 +485,8 @@
             <p style="margin-top: 12px;">I leave 16 bars open on select drops. Best verse gets a repost, a free beat bundle, and NMG development consideration.</p>
           </div>
           <div style="display: flex; flex-direction: column; gap: 12px; min-width: 220px;">
-            <a class="btn btn-primary" href="https://beatstars.com">⚡ Browse BeatStars</a>
-            <a class="btn btn-secondary" href="index.html">// Back to Catalog</a>
+            <a class="btn btn-primary" href="https://www.beatstars.com/acedawgbeatz">⚡ Browse BeatStars</a>
+            <a class="btn btn-secondary" href="index_generated.html">// Back to Catalog</a>
           </div>
         </div>
       </div>
@@ -521,18 +498,17 @@
     <div class="wrap">
       <div class="footer-card">
         <div>
-          <strong style="font-family:'Orbitron',monospace;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;">Acedawgbeatz</strong><br>
-          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim)">Open Verse Sessions — Jump on. Record. Post.</span>
+          <strong style="font-family:'Orbitron',monospace; font-size:0.82rem; letter-spacing:0.06em; text-transform:uppercase;">Acedawgbeatz</strong><br>
+          <span class="mono" style="font-size:10px;">Soul. Bounce. Atmosphere. Catalog.</span>
         </div>
         <div class="footer-links">
-          <a href="index.html">Catalog</a>
-          <a href="vault.html">Vault</a>
-          <a href="packs.html">Packs</a>
+          <a href="https://www.instagram.com/acedawgbeatz/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.tiktok.com/@acedawgbeatz_" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://www.youtube.com/channel/UCCuNWix8NAakkgmxxfBxXmw" target="_blank" rel="noopener">YouTube</a>
           <a href="openverse.html">Open Verse</a>
-          <a href="sync.html">Sync</a>
-          <a href="bio.html">Bio</a>
-          <a href="contact.html">Contact</a>
+          <a href="https://www.beatstars.com/acedawgbeatz">BeatStars</a>
         </div>
+        <div class="mono" style="font-size:10px; color: var(--text-dim);">© 2026 // NEURAL MUSIC GROUP</div>
       </div>
     </div>
   </footer>
@@ -553,7 +529,8 @@
       scrollTopBtn.classList.toggle('visible', y > 300);
     }
 
-    window.onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
     new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } }),

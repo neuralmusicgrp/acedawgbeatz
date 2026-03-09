@@ -85,9 +85,55 @@
 
   <section class="hero"><div class="wrap"><span class="section-id">SYS::CONTACT // REQUEST PATH</span><div class="eyebrow">Contact / Custom Requests</div><h1 style="margin-top:18px;max-width:13ch;">Tell me what you need.</h1><p class="lead" style="margin-top:16px;">Custom production, sync briefs, beat pack questions, collaborations, artist development, and business inquiries all route through here.</p></div></section>
 
-  <section class="section alt"><div class="wrap"><div class="grid-2"><div class="form-card"><span class="section-id">SYS::01 // SUBMIT</span><h2 style="margin-bottom:18px;">Request Form</h2><form action="https://formspree.io/f/mpqyqqaa" method="POST"><label>Name</label><input type="text" placeholder="Your name" required><label>Email</label><input type="email" placeholder="you@example.com" required><label>Type of Request</label><select required><option value="">Select one</option><option>Custom Beat / Production</option><option>Sync Licensing</option><option>Open Verse / Collaboration</option><option>Beat Pack Question</option><option>Business / Publishing</option></select><label>Message</label><textarea placeholder="Describe the sound, mood, deadline, or what you're trying to build."></textarea><input type="hidden" name="_next" value="https://neuralmusicgrp.github.io/acedawgbeatz/thanks.html">
-<input type="hidden" name="_subject" value="New Request — Acedawgbeatz">
-<button class="btn btn-primary" type="submit">Send Request</button><div class="status" id="status">REQUEST_QUEUED :: Connect this form to Formspree, MailerLite, Kit, or your preferred backend before going live.</div></form></div><div class="grid-2"><div class="card"><h3>Custom Production</h3><p>Soulful, dark, Afro-fusion, cinematic, club-ready, open verse, or hybrid production requests.</p></div><div class="card"><h3>Sync Requests</h3><p>Send your use case, mood, and timing. Existing cues or custom fits can be routed fast.</p></div><div class="card"><h3>Collaboration</h3><p>Artist linkups, open verse follow-ups, writing opportunities, and development conversations.</p></div><div class="card"><h3>Business</h3><p>Publishing, licensing, partnerships, and commercial opportunities inside the NMG ecosystem.</p></div></div></div></div></section>
+  <section class="section alt"><div class="wrap"><div class="grid-2"><div class="form-card"><span class="section-id">SYS::01 // SUBMIT</span><h2 style="margin-bottom:18px;">Request Form</h2><form id="contactForm">
+  <label>Name</label>
+  <input type="text" name="name" placeholder="Your name" required>
+  <label>Email</label>
+  <input type="email" name="email" placeholder="you@example.com" required>
+  <label>Type of Request</label>
+  <select name="request_type" required>
+    <option value="">Select one</option>
+    <option>Custom Beat / Production</option>
+    <option>Sync Licensing</option>
+    <option>Open Verse / Collaboration</option>
+    <option>Beat Pack Question</option>
+    <option>Business / Publishing</option>
+  </select>
+  <label>Message</label>
+  <textarea name="message" placeholder="Describe the sound, mood, deadline, or what you're trying to build."></textarea>
+  <button class="btn btn-primary" type="submit" id="contactSubmit">Send Request</button>
+  <div class="status" id="contactStatus"></div>
+</form>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('contactSubmit');
+    var status = document.getElementById('contactStatus');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    var data = new FormData(this);
+    try {
+      var res = await fetch('https://formspree.io/f/mpqyqqaa', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        window.location.href = 'thanks.html';
+      } else {
+        status.classList.add('show');
+        status.textContent = 'Something went wrong. Try again or email directly.';
+        btn.textContent = 'Send Request';
+        btn.disabled = false;
+      }
+    } catch(err) {
+      status.classList.add('show');
+      status.textContent = 'Connection error. Try again.';
+      btn.textContent = 'Send Request';
+      btn.disabled = false;
+    }
+  });
+</script></div><div class="grid-2"><div class="card"><h3>Custom Production</h3><p>Soulful, dark, Afro-fusion, cinematic, club-ready, open verse, or hybrid production requests.</p></div><div class="card"><h3>Sync Requests</h3><p>Send your use case, mood, and timing. Existing cues or custom fits can be routed fast.</p></div><div class="card"><h3>Collaboration</h3><p>Artist linkups, open verse follow-ups, writing opportunities, and development conversations.</p></div><div class="card"><h3>Business</h3><p>Publishing, licensing, partnerships, and commercial opportunities inside the NMG ecosystem.</p></div></div></div></div></section>
 
   <section class="section"><div class="wrap"><span class="section-id">SYS::02 // BEST USE</span><div class="eyebrow">Before You Send</div><div class="grid-3" style="margin-top:28px;"><div class="card"><h3>Be Specific</h3><p>Tell me the sound, mood, BPM range, artist lane, and deadline if you have one.</p></div><div class="card"><h3>Reference the Lane</h3><p>Late Night Soul, Trap Soul Confessions, Afro-Soul Nights, Cinematic Soul, Open Verse, Club Certified, or Seasonal Soul.</p></div><div class="card"><h3>Tell Me the Goal</h3><p>Single, EP, sync cue, creator content, open verse challenge, podcast, ad, or long-term catalog build.</p></div></div></div></section>
 

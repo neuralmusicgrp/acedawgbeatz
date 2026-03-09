@@ -1170,6 +1170,15 @@
       .glitch::before, .glitch::after { display: none; }
     }
   </style>
+  <!-- MailerLite Universal -->
+  <script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},
+    l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],
+    n.parentNode.insertBefore(l,n);})(window,document,'script',
+    'https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '1966744');
+  </script>
+  <!-- End MailerLite Universal -->
 </head>
 <body>
 
@@ -1293,18 +1302,16 @@
             <div class="benefit">⚡ Early Beat Drops</div>
           </div>
 
-          <form class="form-shell" id="vaultForm" action="#" method="post">
+          <form class="form-shell" id="vaultForm" onsubmit="event.preventDefault(); ml('show', '4nVDsF', true);">
             <label for="email">// Enter Access Code (Email)</label>
             <div class="field-row">
-              <input id="email" name="email" type="email" placeholder="artist@email.com" required autocomplete="email" />
+              <input id="email" name="email" type="email" placeholder="artist@email.com" autocomplete="email" />
               <button class="btn btn-primary" type="submit" id="submitBtn">
-                <span class="btn-text">Unlock</span>
-                <div class="spinner"></div>
+                <span class="btn-text">⚡ Unlock</span>
               </button>
             </div>
-            <div class="status" id="statusBox">VAULT_UNLOCKED :: In the live version, connect to MailerLite or Kit, then redirect to your thank-you page and homepage.</div>
           </form>
-          <p class="mono" style="margin-top:12px; font-size:10px;">NO SPAM. JUST SOUND. REDIRECT → THANK-YOU → BEATSTARS</p>
+          <p class="mono" style="margin-top:12px; font-size:10px;">NO SPAM. JUST SOUND. UNSUBSCRIBE ANYTIME.</p>
         </div>
       </div>
     </div>
@@ -1698,7 +1705,7 @@
       setTimeout(() => {
         submitBtn.classList.remove('loading');
         statusBox.classList.add('show');
-        statusBox.innerHTML = 'VAULT_UNLOCKED :: In a live build, submit to your email platform, then redirect to your thank-you page.';
+        statusBox.innerHTML = 'VAULT_UNLOCKED :: Check your inbox — your free beats are on the way.';
         setTimeout(() => {
           if (THANK_YOU_URL.includes('acedawgbeatz.com')) window.location.href = THANK_YOU_URL;
         }, POST_SUBMIT_REDIRECT_MS);

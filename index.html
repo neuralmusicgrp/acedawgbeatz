@@ -1695,27 +1695,7 @@
       hamburger.setAttribute('aria-expanded', false);
     }));
 
-    const form      = document.getElementById('vaultForm');
-    const statusBox = document.getElementById('statusBox');
-    const submitBtn = document.getElementById('submitBtn');
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      submitBtn.classList.add('loading');
-      setTimeout(() => {
-        submitBtn.classList.remove('loading');
-        statusBox.classList.add('show');
-        statusBox.innerHTML = 'VAULT_UNLOCKED :: Check your inbox — your free beats are on the way.';
-        setTimeout(() => {
-          if (THANK_YOU_URL.includes('acedawgbeatz.com')) window.location.href = THANK_YOU_URL;
-        }, POST_SUBMIT_REDIRECT_MS);
-      }, 1400);
-    });
-
-    setTimeout(() => {
-      if (!statusBox.classList.contains('show') && HOMEPAGE_URL.includes('acedawgbeatz.com'))
-        window.location.href = HOMEPAGE_URL;
-    }, AUTO_REDIRECT_MS);
+    // Email capture handled by MailerLite popup
   </script>
 </body>
 </html>

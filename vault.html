@@ -651,13 +651,13 @@
   ══════════════════════════════════════ -->
   <section class="section" id="classes">
     <div class="wrap">
-      <span class="section-id reveal">SYS::04 // PRODUCT CLASSES</span>
-      <div class="eyebrow-gold reveal">Product Classes</div>
-      <h2 class="reveal reveal-delay-1" style="margin-top:6px;">Two Buyer Types. Two Clear Lanes.</h2>
+      <span class="section-id reveal">SYS::04 // THE CATALOG</span>
+      <div class="eyebrow-gold reveal">What's Available</div>
+      <h2 class="reveal reveal-delay-1" style="margin-top:6px;">Every Sound Has a Lane.</h2>
       <div class="grid-2" style="margin-top:28px;">
 
         <div class="card class-card reveal reveal-delay-1">
-          <h3 style="color:var(--cyan); margin-bottom:14px;">Artist / Buyer-Facing</h3>
+          <h3 style="color:var(--cyan); margin-bottom:14px;">For Artists &amp; Creators</h3>
           <ul class="class-list">
             <li>Late Night Soul Vol. 1</li>
             <li>Trap Soul Confessions</li>
@@ -671,13 +671,13 @@
         </div>
 
         <div class="card class-card reveal reveal-delay-2">
-          <h3 style="color:var(--gold); margin-bottom:14px;">Producer-Facing</h3>
+          <h3 style="color:var(--gold); margin-bottom:14px;">For Producers</h3>
           <ul class="class-list">
             <li>Signature Loop Packs</li>
-            <li>Melodic textures</li>
-            <li>Chord emotion</li>
-            <li>Rhythmic pockets</li>
-            <li>Producer-ready inspiration</li>
+            <li>Melodic chord textures</li>
+            <li>Rhythmic pocket loops</li>
+            <li>Flip-ready musical ideas</li>
+            <li>Premium sound design inspiration</li>
           </ul>
         </div>
 
@@ -924,18 +924,7 @@
       mobileMenu.classList.remove('open'); hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded', false);
     }));
 
-    const emailForm   = document.getElementById('emailForm');
-    const emailStatus = document.getElementById('emailStatus');
-    const emailSubmit = document.getElementById('emailSubmit');
-
-    emailForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      emailSubmit.classList.add('loading');
-      setTimeout(() => {
-        emailSubmit.classList.remove('loading');
-        emailStatus.classList.add('show');
-      }, 1400);
-    });
+// email capture handled by direct fetch (vcSubmit)
   </script>
 </body>
 </html>

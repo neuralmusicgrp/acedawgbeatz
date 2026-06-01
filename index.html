@@ -1114,6 +1114,31 @@
 
     .footer-links a:hover { color: var(--cyan); background: var(--cyan-dim); }
 
+    .soundbetter-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 10px;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 0 18px rgba(0,229,200,0.16);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .soundbetter-badge:hover {
+      transform: translateY(-2px);
+      border-color: var(--cyan);
+      box-shadow: 0 0 28px rgba(0,229,200,0.28);
+      background: #fff;
+    }
+
+    .soundbetter-badge img {
+      display: block;
+      width: 130px;
+      max-width: 130px;
+      height: auto;
+    }
+
     /* ─── SCROLL REVEAL ─── */
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .reveal.visible { opacity: 1; transform: none; }
@@ -1769,7 +1794,21 @@
           <a href="https://www.youtube.com/@acedawgbeatz-nmg" target="_blank" rel="noopener">YouTube</a>
           <a href="openverse.html">Open Verse</a>
           <a href="https://www.beatstars.com/acedawgbeatz">BeatStars</a>
-        <a href="terms.html" style="color:var(--cyan);">Terms &amp; Privacy</a></div>
+          <a href="terms.html" style="color:var(--cyan);">Terms &amp; Privacy</a>
+        </div>
+        <a
+          class="soundbetter-badge"
+          href="https://soundbetter.com/profiles/726440-acedawgbeatz"
+          rel="noopener noreferrer"
+          target="_blank"
+          title="Acedawgbeatz profile on SoundBetter"
+          aria-label="Acedawgbeatz Producer profile on SoundBetter"
+        >
+          <img
+            alt="Acedawgbeatz, Producer on SoundBetter"
+            src="https://d2p6ecj15pyavq.cloudfront.net/assets/SoundBetterBadge-c84cb3e75c4267f5bee41f7f617a81d9.svg"
+          />
+        </a>
         <div class="mono" style="font-size:10px; color: var(--text-dim);">© 2026 // ALL RIGHTS RESERVED</div>
       </div>
     </div>
